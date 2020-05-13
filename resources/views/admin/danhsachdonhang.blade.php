@@ -60,9 +60,17 @@
                 <tbody>
                     @foreach($danhsachdonhang as $dh)
                     <tr>
-                        <td>{{$dh->ngaydat}}</td>
+                        <td><?php 
+                            $date = date_create($dh->ngaydat);
+                            echo date_format($date,"d-m-Y ");
+                        ?></td>
+
                         <td>{{$dh->tensanpham}}</td>
-                        <td>{{$dh->tongtien}}</td>
+
+                        <td><?php
+                            $tongtien = $dh->tongtien;
+                            echo number_format($tongtien, 0, ',', '.') . "₫";
+                        ?></td>
                         <td>{{$dh->ghichu}}</td>
                         <td>
                         <?php
