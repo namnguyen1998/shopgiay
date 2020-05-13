@@ -263,7 +263,27 @@
 								</a>
 
 								<span class="stext-105 cl3">
-									{{$pd->giatien}}
+								<span><?php 
+									$number = $pd->giatien;
+									echo number_format($number, 0, ',', '.') . "₫";
+								?></span>
+
+								<!-- Vue.js -->
+								<!-- <i18n-n :value="{{$pd->giatien}}" :format="{ key: 'currency', currency: 'VND' }">
+									<span  v-slot:currency="slotProps" styles="font-weight: bold">{{$pd->giatien}}</span>
+								</i18n-n> -->
+								
+								<!-- Javascript -->
+									<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+									<script>
+										$(document).ready(function(){
+										var number = "{{$pd->giatien}}";
+										var giatien = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(number);										
+										// console.log(giatien);
+										$('#_giatien').append(giatien);
+										
+        							});
+									</script>
 								</span>
 							</div>
 

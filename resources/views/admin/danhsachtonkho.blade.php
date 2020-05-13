@@ -119,9 +119,17 @@
                      $tongsl = ($sp->tongsp)+($sp->sl_nhap);
                      echo $tongsl;
                     ?></td>
-                <td>{{$sp->ngay_nhap}}</td>
+                <td><?php 
+                    $date = date_create($sp->ngay_nhap);
+                    echo date_format($date,"d-m-Y ");
+                ?></td>
+
                 <td class="process">{{$sp->sl_nhap}}</td>
-                <td>{{$sp->ngay_xuat}}</td>
+                <td><?php 
+                    $date = date_create($sp->ngay_xuat);
+                    echo date_format($date,"d-m-Y ");
+                ?></td>
+                
                 <td class="denied">{{$sp->sl_xuat}}</td>
                 <td>
                     <?php
