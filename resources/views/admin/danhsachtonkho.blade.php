@@ -88,14 +88,10 @@
             <a href="{{URL::to('/phieu-nhap')}}">
             <i class="zmdi zmdi-plus"></i>Phiếu nhập</button>
             </a>
-        <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-            <select class="js-select2" name="type">
-                <option selected="selected">Export</option>
-                <option value="">Option 1</option>
-                <option value="">Option 2</option>
-            </select>
-            <div class="dropDownSelect2"></div>
-        </div>
+            <button class="btn btn-dark au-btn-icon au-btn--small">
+            <a href="{{URL::to('/report')}}">
+            <i class="zmdi"></i>Xuất Excel</button>
+            </a>
     </div>
 </div>
 <div class="table-responsive m-b-40">

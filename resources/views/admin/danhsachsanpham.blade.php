@@ -117,7 +117,10 @@
                     <td><img src="public/frontend/images/{{$sanpham->hinh}}" height="100" width="100"></td>
                     <!-- <td class="desc">Samsung S8 Black</td> -->
                     <td>{{$sanpham->mota}}</td>
-                    <td>{{$sanpham->giatien}}</td>
+                    <td><?php
+                            $giatien = $sanpham->giatien;
+                            echo number_format($giatien, 0, ',', '.') . "₫";
+                        ?></td>
                     <td>
                         <span class="status--process">{{$sanpham->giakm}}</span>
                     </td>
@@ -128,7 +131,7 @@
                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                 <i class="zmdi zmdi-edit"></i>
                             </button>
-                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                            <button class="item " data-toggle="tooltip" data-placement="top"  title="Delete" onclick="return confirm('Bạn có chắc muốn XOÁ sản phẩm này?')" >
                                 <i class="zmdi zmdi-delete"></i>
                             </button>
                         </div>
