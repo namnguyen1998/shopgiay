@@ -60,7 +60,13 @@ Route::post('/update-hang-san-xuat/{id_hang}','HangsxController@update_hangsx');
 Route::get('/danh-sach-user','UserController@danhsachuser');
 //Sản phẩm
 Route::get('/danh-sach-san-pham','SanphamController@danhsachsanpham');
+Route::resource('/them-san-pham', 'CKEditorController');
+Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 Route::get('/them-san-pham','SanphamController@themsanpham');
+
+
+
+
 //Đơn hàng
 Route::get('/danh-sach-don-hang','DonhangController@danhsachdonhang');
 //Chitietdonhang
@@ -68,3 +74,5 @@ Route::get('/chi-tiet-don-hang/{id_donhang}','DonhangController@chitietdonhang')
 //Tồn kho
 Route::get('/danh-sach-ton-kho','TonkhoController@danhsachtonkho');
 Route::get('/phieu-nhap','TonkhoController@phieunhap');
+Route::get('/report','TonkhoController@report');
+Route::get('/trang-thai-don-hang', 'DonhangController@trangthaidonhang');

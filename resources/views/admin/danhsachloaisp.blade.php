@@ -118,10 +118,20 @@
                                 <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                 <a href="{{URL::to('/edit-loai-san-pham/'.$lsp->id)}}"><i class="zmdi zmdi-edit"></i></a>
                                 </button>
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete" onclick="return confirm('Bạn có chắc muốn XOÁ sản phẩm này?')">
                                 <a href="{{URL::to('/delete-loai-san-pham/'.$lsp->id)}}">
                                     <i class="zmdi zmdi-delete"></i></a>
                                 </button>
+                                <!-- <script>
+                                    function ConfirmDelete()
+                                        {
+                                        // var x = confirm("Are you sure you want to delete?");
+                                            if(confirm("Do you want Delete!")==false){
+                                                console.log("NO");
+                                                return true;
+                                            }return  window.location;
+                                        }
+                                </script> -->
                             </div>
                         </td>
                     </tr>

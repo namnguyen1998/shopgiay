@@ -437,11 +437,11 @@
                                 </a>
 
                                 <span class="stext-105 cl3">
-                                <?php 
-									$number = $pd->giatien;
-									echo number_format($number, 0, ',', '.') . "₫";
-								?>
-                                </span>
+                                
+                                <?php
+                                    $giatien = $pd->giatien;
+                                    echo number_format($giatien, 0, ',', '.') . "₫";
+                                ?></span>
                             </div>
 
                             <div class="block2-txt-child2 flex-r p-t-3">
