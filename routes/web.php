@@ -15,12 +15,11 @@ use Illuminate\Support\Facades\Route;
 //Shop Frontend
 Route::get('/', 'HomeController@index');
 Route::get('/trangsanpham','HomeController@trangsanpham');
+Route::get('chitietsanpham/{id}','SanphamController@chitietsanpham');
 
 
-
-
-
-
+Route::post('/timkiem','SanphamController@timkiemsanpham');
+Route::get('/ajax','SanphamController@ajaxtimkiem');
 
 
 //Admin Backend
@@ -58,6 +57,7 @@ Route::get('/edit-hang-san-xuat/{id_hang}','HangsxController@edit_hangsx');
 Route::post('/update-hang-san-xuat/{id_hang}','HangsxController@update_hangsx');
 //User
 Route::get('/danh-sach-user','UserController@danhsachuser');
+Route::get('/login','UserController@getIndex');
 //Sản phẩm
 Route::get('/danh-sach-san-pham','SanphamController@danhsachsanpham');
 Route::resource('/them-san-pham', 'CKEditorController');
@@ -69,10 +69,9 @@ Route::get('/them-san-pham','SanphamController@themsanpham');
 
 //Đơn hàng
 Route::get('/danh-sach-don-hang','DonhangController@danhsachdonhang');
-//Chitietdonhang
-Route::get('/chi-tiet-don-hang/{id_donhang}','DonhangController@chitietdonhang');
 //Tồn kho
 Route::get('/danh-sach-ton-kho','TonkhoController@danhsachtonkho');
 Route::get('/phieu-nhap','TonkhoController@phieunhap');
 Route::get('/report','TonkhoController@report');
 Route::get('/trang-thai-don-hang', 'DonhangController@trangthaidonhang');
+

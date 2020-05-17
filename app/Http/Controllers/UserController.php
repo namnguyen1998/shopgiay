@@ -19,6 +19,9 @@ class UserController extends Controller
             return Redirect::to('admin')->send();
         }
     }
+    public function getIndex(){
+        return view('user.loginuser');
+    }
     public function danhsachuser(){
     	$this->AuthLogin();
     	$dsuser = DB::table('chucvu')->join('nhanvien','nhanvien.id_chucvu','=','chucvu.id')->get();

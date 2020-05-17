@@ -44,11 +44,11 @@
 <div class="row">
     <div class="col-md-12">
         <!-- DATA TABLE -->
-        <h3 class="title-5 m-b-35" style="text-align: center">DANH SÁCH LOẠI SẢN PHẨM</h3>
+        <h3 class="title-5 m-b-35">DANH SÁCH LOẠI SẢN PHẨM</h3>
         <?php
         $message = Session::get('message');
         if($message){
-            echo'<div class="alert alert-success" role="alert">'.$message.'</div>';
+            echo'<span class = "text-alert ">'.$message.'</span>';
             Session::put('message',null);
         }
       ?>
@@ -113,7 +113,7 @@
                         <td>{{$lsp->id}}</td>
                         </td>
                         <td class="desc">{{$lsp->tenloai}}</td>
-                        <td style="float: left;width: 200px;">
+                        <td>
                             <div class="table-data-feature">
                                 <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                 <a href="{{URL::to('/edit-loai-san-pham/'.$lsp->id)}}"><i class="zmdi zmdi-edit"></i></a>

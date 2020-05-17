@@ -244,12 +244,12 @@
 			</div>
 
 			<div class="row isotope-grid">
-				@foreach($product as $pd)
+				@foreach($sanphamtimkiem as $sptk)
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="public/frontend/images/{{$pd->hinhsp}}" alt="IMG-PRODUCT">
+							<img src="public/frontend/images/{{$sptk->hinhsp}}" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -258,32 +258,12 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="{{URL::to('/chitietsanpham/'.$pd->id)}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									{{$pd->tensanpham}}
+								<a href="{{URL::to('/chitietsanpham/'.$sptk->id)}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									{{$sptk->tensanpham}}
 								</a>
 
 								<span class="stext-105 cl3">
-								<span><?php 
-									$number = $pd->giatien;
-									echo number_format($number, 0, ',', '.') . "₫";
-								?></span>
-
-								<!-- Vue.js -->
-								<!-- <i18n-n :value="{{$pd->giatien}}" :format="{ key: 'currency', currency: 'VND' }">
-									<span  v-slot:currency="slotProps" styles="font-weight: bold">{{$pd->giatien}}</span>
-								</i18n-n> -->
-								
-								<!-- Javascript -->
-									<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-									<script>
-										$(document).ready(function(){
-										var number = "{{$pd->giatien}}";
-										var giatien = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(number);										
-										// console.log(giatien);
-										$('#_giatien').append(giatien);
-										
-        							});
-									</script>
+									{{$sptk->giatien}}
 								</span>
 							</div>
 
@@ -300,10 +280,5 @@
 			</div>
 
 			<!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-45">
-				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Load More
-				</a>
-			</div>
 		</div>
 		@endsection
