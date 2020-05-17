@@ -12,22 +12,10 @@ session_start();
 
 class TonkhoController extends Controller
 {
-	 public function AuthLogin(){
-        $admin_id = Session::get('id');
-        if($admin_id){
-            return Redirect::to('dashboard');
-        }else{
-            return Redirect::to('admin')->send();
-        }
-    }
     public function danhsachtonkho(){
-    	$this->AuthLogin();
-    	$dssanphamtonkho = DB::table('sanpham')->join('tonkho','tonkho.id_sp','=','sanpham.id')->get();
-    	$qlydstonkho = view('admin.danhsachtonkho')->with('dssanphamtonkho',$dssanphamtonkho);
+    	$dssanphamtonkho = DB::table('sanpham')->join('tongsanpham_tonkho','tongsanpham_tonkho.id_sanpham','=','sanpham.id')->get();
+    	$dstonkho = DB::table('sanpham')->join('tonkho','tonkho.id_sp','=','sanpham.id')->get();
+    	$qlydstonkho = view('admin.danhsachtonkho')->with('dssanphamtonkho',$dssanphamtonkho)->with('dstonkho',$dstonkho);
     	return view('admin')->with('admin.danhsachtonkho',$qlydstonkho);
-    }
-    public function phieunhap(){
-    	$this->AuthLogin();
-    	return view('admin.phieunhap');
     }
 }

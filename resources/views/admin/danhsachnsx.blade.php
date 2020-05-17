@@ -117,7 +117,7 @@
                         <td>
                             {{$hsx->tenhang}}
                         </td>
-                         <td><img src="public/frontend/images/{{$hsx->hinh}}" height="100" width="100"></td>
+                         <td><img src="backend/images/logo/{{$hsx->hinh}}" height="100" width="100"></td>
                         <td>
               <?php
                if($hsx->trangthai==1){
