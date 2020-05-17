@@ -301,6 +301,7 @@
 
 <!--===============================================================================================-->  
     <script src="{{asset('public/frontend/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('public/frontend/vendor/jquery/jquery-3.5.0.min.js')}}"></script>
 <!--===============================================================================================-->
     <script src="{{asset('public/frontend/vendor/animsition/js/animsition.min.js')}}"></script>
 <!--===============================================================================================-->

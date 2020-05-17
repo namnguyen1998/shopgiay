@@ -12,16 +12,7 @@ session_start();
 
 class DonhangController extends Controller
 {
-     public function AuthLogin(){
-        $admin_id = Session::get('id');
-        if($admin_id){
-            return Redirect::to('dashboard');
-        }else{
-            return Redirect::to('admin')->send();
-        }
-    }
     public function danhsachdonhang(){
-        $this->AuthLogin();
     	$danhsachdonhang = DB::table('donhang')
     	->join('chitietdonhang','chitietdonhang.id','=','donhang.id_chitietdh')
     	->join('sanpham','sanpham.id','=','donhang.id_sp')
@@ -31,6 +22,7 @@ class DonhangController extends Controller
     	$qlydsdonhang = view('admin.danhsachdonhang')->with('danhsachdonhang',$danhsachdonhang);
     	return view('admin')->with('admin.danhsachdonhang',$qlydsdonhang);
     }
+
     public function chitietdonhang($id_donhang){
         $this->AuthLogin();
         $donhang = DB::table('chitietdonhang')
@@ -42,6 +34,7 @@ class DonhangController extends Controller
         $qlychitietdonhang = view('admin.chitietdonhang')->with('donhang',$donhang);
         return view('admin')->with('admin.chitietdonhang',$qlychitietdonhang);
     }
+    
     public function trangthaidonhang(){
         if(isset($_GET['c_id'])){
             $a = $_GET['c_id'];
@@ -56,4 +49,5 @@ class DonhangController extends Controller
             
         }
     }
+
 }

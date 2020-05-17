@@ -44,6 +44,7 @@
 <div class="row m-t-30">
     <div class="col-md-12">
         <!-- DATA TABLE-->
+
         <h3 class="title-5 m-b-35" style="text-align: center">DANH SÁCH ĐƠN HÀNG</h3>
          
         <div class="table-data__tool">
@@ -83,7 +84,6 @@
                 </thead>
                 <tbody>
                     <tr id="_show_data_trangthai"></tr>
-                </tbody>
             </table>
         </div>
         <!-- END DATA TABLE-->
@@ -121,4 +121,4 @@
         })
 </script>
 @endsection
-// + '<td><div class="table-data-feature"><button class="item" data-toggle="tooltip" data-placement="top" title="More"><a href="{{URL::to('/chi-tiet-don-hang/+value.id_chitietdh+')}}"><i class="zmdi zmdi-more"></i></a></button></div></td>')
+<!-- + '<td><div class="table-data-feature"><button class="item" data-toggle="tooltip" data-placement="top" title="More"><a href="{{URL::to('/chi-tiet-don-hang/+value.id_chitietdh+')}}"><i class="zmdi zmdi-more"></i></a></button></div></td>') -->
