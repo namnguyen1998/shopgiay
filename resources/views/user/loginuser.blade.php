@@ -19,11 +19,18 @@
 	    		<img src="{{URL::to('public/frontend/images/icons/gp.png')}}">
 	    		<img src="{{URL::to('public/frontend/images/icons/tw.png')}}">
     		</div>
-    		<form id="login" class="input-group">
-    			<input type="text" class="input-field" placeholder="Tên Tài Khoản" required>
-    			<input type="text" class="input-field" placeholder="Nhập Mật Khẩu" required>
+			<?php
+                            $message = Session::get('message'); 
+                            if($message){
+                                echo '<div style="margin-left: 44px;color: red;font-weight: bold;font-size: 15px;">'.$message.'</div>';
+                                Session::put('message',null);
+                            }
+                        ?>
+    		<form id="login" class="input-group" action="{{URL::to('/login/ss')}}" method="post">@csrf
+    			<input type="text" class="input-field" name="username" placeholder="Tên Tài Khoản" required>
+    			<input type="password" class="input-field" name="password" placeholder="Nhập Mật Khẩu" required>
     			<input type="checkbox" class="chech-box"><span>Nhớ Mật Khẩu</span>
-    			<button type="submit" class="submit-btn"> Đăng Nhập</button>
+    			<button type="submit" name="login" class="submit-btn"> Đăng Nhập</button>
     		</form>
     		<form id="register" class="input-group">
     			<input type="text" class="input-field" placeholder="Tên Tài Khoản" required>
