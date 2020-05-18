@@ -10,9 +10,9 @@
                         <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                             <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
                                 <span class="ltext-101 cl2 respon2" style="color:whitesmoke">
-                                    Jordan Collection 2018
-                                <span class="ltext-101 cl13 respon2">
-                                    Sneaker Collection 2020
+                                                               Sneaker Collection 2020
+
+ 
                                 </span>
                             </div>
                                 
@@ -24,54 +24,6 @@
                             </div>
                                 
                             <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-                                <a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                    Shop Now
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-slick1" style="background-image: url({{'public/frontend/images/slide2.jpg'}});">
-                    <div class="container h-full">
-                        <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-                            <div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
-                                <span class="ltext-101 cl2 respon2" style="color:whitesmoke">
-                                    Converse New-Season
-                                </span>
-                            </div>
-                                
-                            <div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
-                                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="color:whitesmoke">
-                                    Classic & 1970s
-                                </h2>
-                            </div>
-                                
-                            <div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-                                <a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                    Shop Now
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-slick1" style="background-image: url({{'public/frontend/images/slide3.jpg'}});">
-                    <div class="container h-full">
-                        <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-                            <div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
-                                <span class="ltext-101 cl2 respon2" style="color:whitesmoke">
-                                    Nike Collection 2020
-                                </span>
-                            </div>
-                                
-                            <div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
-                                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="color:whitesmoke">
-                                    New arrivals
-                                </h2>
-                            </div>
-                                
-                            <div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
                                 <a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
                                     Shop Now
                                 </a>
@@ -223,7 +175,27 @@
                             <i class="zmdi zmdi-search"></i>
                         </button>
 
-                        <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+                        <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" id="search" name="keyword_submit" placeholder="Search">
+                        <script src="{{asset('public/frontend/vendor/jquery/jquery-3.5.0.min.js')}}"></script>
+                        <script> 
+                        $(document).ready(function() {
+                                $("#search").change(function() {
+                                    $.ajax({
+                                        url:'{{URL::to('/ajax')}}',
+                                        data:$("#search").val(),
+                                        type:"GET",
+                                        success:function(ds)
+                                        {
+                                            console.log(ds);
+                                    
+                                        }
+
+                                        })
+                                })
+                        })
+
+
+                            </script>
                     </div>  
                 </div>
 
@@ -419,7 +391,7 @@
 
             <div class="row isotope-grid">
                @foreach($product as $pd)
-                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                <div id="pro" class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-pic hov-img0">
@@ -432,13 +404,16 @@
 
                         <div class="block2-txt flex-w flex-t p-t-14">
                             <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                <a href="{{URL::to('/chitietsanpham/'.$pd->id)}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                     {{$pd->tensanpham}}
                                 </a>
 
                                 <span class="stext-105 cl3">
-                                    {{$pd->giatien}}
-                                </span>
+                                
+                                <?php
+                                    $giatien = $pd->giatien;
+                                    echo number_format($giatien, 0, ',', '.') . "₫";
+                                ?></span>
                             </div>
 
                             <div class="block2-txt-child2 flex-r p-t-3">

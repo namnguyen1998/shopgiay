@@ -61,13 +61,20 @@
                 <tbody>
                     @foreach($donhang as $dh)
                     <tr>
-                        <td>{{$dh->ngaydat}}</td>
+                        <td><?php 
+                            $date = date_create($dh->ngaydat);
+                            echo date_format($date,"d-m-Y ");
+                        ?></td>
+
                         <td>{{$dh->tennguoinhan}}</td>
                         <td>{{$dh->sdt}}</td>
                         <td>{{$dh->diachi}}</td>
                         <td>{{$dh->tensanpham}}</td>
                         <td class="denied">{{$dh->soluong}}</td>
-                        <td class="process">{{$dh->tongtien}}</td>
+                        <td class="process"><?php
+                            $tongtien = $dh->tongtien;
+                            echo number_format($tongtien, 0, ',', '.') . "₫";
+                        ?></td>
                         <td>{{$dh->tenpttt}}</td>
                     </tr>
                     @endforeach

@@ -1,5 +1,6 @@
 @extends('admin')
 @section('content')
+
 <aside class="menu-sidebar d-none d-lg-block">
 <div class="logo">
     <a href="#">
@@ -41,6 +42,7 @@
     </nav>
 </div>
 </aside>
+
 <div class="card">
     <div class="card-header" style="text-align: center">
         <strong>THÊM SẢN PHẨM</strong>
@@ -57,10 +59,12 @@
             </div>
             <div class="row form-group">
                 <div class="col col-md-3">
-                    <label for="textarea-input" class=" form-control-label">Mô tả</label>
+                    <label for="form-control" class=" form-control-label">Mô tả</label>
                 </div>
                 <div class="col-12 col-md-9">
-                    <textarea name="mota" id="textarea-input" rows="9" placeholder="Nhập mô tả sản phẩm" class="form-control"></textarea>
+                    <!-- <textarea name="mota" id="textarea-input" rows="9" placeholder="Nhập mô tả sản phẩm" class="form-control"></textarea> -->
+                    <textarea class="form-control" id="summary-ckeditor" rows="9" name="summary-ckeditor" class="form-control" placeholder="Nhập mô tả sản phẩm"></textarea>
+                    
                 </div>
             </div>
             <div class="row form-group">
@@ -119,4 +123,13 @@
     </div>
     </form>
 </div>
+<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+    CKEDITOR.replace( 'summary-ckeditor', {
+        filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token() ])}}",
+        filebrowserUploadMethod: 'form'
+    });
+</script>
+
 @endsection

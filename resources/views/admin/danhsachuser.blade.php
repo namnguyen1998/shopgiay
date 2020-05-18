@@ -76,7 +76,7 @@
                     <td>Số điện thoại</td>
                     <td>Địa chỉ</td>
                     <td>Chức vụ</td>
-                    <td></td>
+                    <td>Quyền Truy cập</td>
                 </tr>
             </thead>
             <tbody>
@@ -102,11 +102,11 @@
 						<?php
 						if($user->id_chucvu==1){
 						?>
-						<span class="role admin">{{$user->tenchucvu}}</span>              
+						<span class="role admin">{{$user->tenchucvu}}</span></td>              
 						<?php
 						}else{
 						?>  
-						<span class="role user">{{$user->tenchucvu}}</span>
+						<span class="role user">{{$user->tenchucvu}}</span></td>
 						<?php
 						}
 						?>
