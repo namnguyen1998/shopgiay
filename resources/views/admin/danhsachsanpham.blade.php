@@ -114,7 +114,7 @@
                     <td>
                         <span class="block-email">{{$sanpham->tensanpham}}</span>
                     </td>
-                    <td><img src="public/frontend/images/{{$sanpham->hinh}}" height="100" width="100"></td>
+                    <td><img src="public/frontend/images/{{$sanpham->hinhsp}}" height="100" width="100"></td>
                     <!-- <td class="desc">Samsung S8 Black</td> -->
                     <td>{{$sanpham->mota}}</td>
                     <td>{{$sanpham->giatien}}</td>

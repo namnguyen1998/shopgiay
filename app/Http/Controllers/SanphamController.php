@@ -24,7 +24,7 @@ class SanphamController extends Controller
     	$dssanpham = DB::table('sanpham')
                    ->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')
                    ->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')
-                   ->select('sanpham.id','sanpham.hinh','sanpham.mota','sanpham.giatien','sanpham.giakm','sanpham.tensanpham','loaisanpham.tenloai','hanggiay.tenhang')
+                   ->select('sanpham.id','sanpham.hinhsp','sanpham.mota','sanpham.giatien','sanpham.giakm','sanpham.tensanpham','loaisanpham.tenloai','hanggiay.tenhang')
                    ->get();
     	$qlydssanpham = view('admin.danhsachsanpham')->with('dssanpham',$dssanpham);
     	return view('admin')->with('admin.danhsachsanpham',$qlydssanpham);
