@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login and Registration</title>
+	<title>Login</title>
     <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/login.css')}}">
 </head>
 <body>
@@ -20,8 +20,8 @@
 	    		<img src="{{URL::to('public/frontend/images/icons/tw.png')}}">
     		</div>
     		<form id="login" class="input-group">
-    			<input type="text" class="input-field" placeholder="Tên Tài Khoản" required>
-    			<input type="text" class="input-field" placeholder="Nhập Mật Khẩu" required>
+    			<input id="id_user" value="" type="text" class="input-field" placeholder="Tên Tài Khoản" required>
+    			<input id="pw_user" value="" type="text" class="input-field" placeholder="Nhập Mật Khẩu" required>
     			<input type="checkbox" class="chech-box"><span>Nhớ Mật Khẩu</span>
     			<button type="submit" class="submit-btn"> Đăng Nhập</button>
     		</form>

@@ -34,7 +34,7 @@ class HangsxController extends Controller
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.',$get_name_image));
             $new_image =  $name_image.'.'.$get_image->getClientOriginalExtension();
-            $get_image->move('public/frontend/images/',$new_image);
+            $get_image->move('public/frontend/images/logo/',$new_image);
             $data['hinh'] = $new_image;
             DB::table('hanggiay')->insert($data);
             Session::put('message','Thêm hãng thành công');
@@ -83,14 +83,14 @@ class HangsxController extends Controller
             $new_image =  $name_image.'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/frontend/images/',$new_image);
             $data['hinh'] = $new_image;
-            DB::table('hanggiay')->update($data);
+            DB::table('hanggiay')->where('id',$id_hang)->update($data);
             Session::put('message','Cập nhật thành công');
             return Redirect::to('danh-sach-hang-san-xuat');
         }
 
         $data['hinh'] = '';
 
-        DB::table('hanggiay')->where('id',$id_hang)->update($data);
+        DB::table('hanggiay')->update($data);
         Session::put('message','Cập nhật thành công');
         return Redirect::to('danh-sach-hang-san-xuat');
     }
