@@ -75,3 +75,9 @@ Route::get('/phieu-nhap','TonkhoController@phieunhap');
 Route::get('/report','TonkhoController@report');
 Route::get('/trang-thai-don-hang', 'DonhangController@trangthaidonhang');
 
+// <!-------------------------start-save-cart---------------------------------------!>
+Route::post('/save-cart','CartController@save_cart');
+Route::get('/show_cart','CartController@show_cart');
+
+// <!----------------------------end-save-cart--------------------------------------!>
+
