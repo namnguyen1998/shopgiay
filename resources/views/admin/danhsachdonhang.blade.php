@@ -83,7 +83,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr id="_show_data_trangthai"></tr>
+                    
+            </table>
+            <table class="table table-borderless table-data3">
+            <tr id="_show_data_trangthai"></tr>
             </table>
         </div>
         <!-- END DATA TABLE-->
@@ -105,7 +108,8 @@
                     // làm mới lại 
                     $('#_show_data_trangthai').empty();
                     $.each(cate_books, function(key, value){
-                    $('#_show_data_trangthai').append('<td>' + value.ngaydat + '</td>' 
+                    
+                    $('#_show_data_trangthai').append('<tr>'+'<td>' + value.ngaydat + '</td>' 
                                                     + '<td>' + value.tensanpham + '</td>' 
                                                     + '<td>' + value.ghichu + '</td>' 
                                                     + '<td>' + value.tentrangthai + '</td>' 
@@ -113,8 +117,11 @@
                                                     + '<td>' + value.tongtien + '</td>'
                                                     + '<td>' + value.tennguoinhan + '</td>'
                                                     + '<td>' + value.diachi + '</td>'
-                                                    + '<td>' + value.sdt + '</td>'
+                                                    + '<td>' + value.sdt + '</td>'+'</tr>'
                     )
+                        
+                        
+                 
                     })
                 })
             })
