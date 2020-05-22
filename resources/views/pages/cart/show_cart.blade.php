@@ -39,25 +39,30 @@
 							@foreach($content as $v)
 								<tr class="table_row">
 									<td class="column-1">
-										<div class="how-itemcart1">
+										<a href="{{URL::to('/delete-to-cart'.$v->rowId)}}"><div class="how-itemcart1">
 											<img src="{{URL::to('public/frontend/images/'.$v->options->image)}}" 
 											width="200"alt="IMG">
-										</div>
+										</div></a>
 									</td>
 									<td class="column-2">{{$v->name}}</td>
 									<td class="column-3">{{number_format($v->price)}}</td>
 									<td class="column-4">
+										<form action="{{URL::to('/update-cart-quantity')}}" method="post">
+											@csrf
 										<div class="wrap-num-product flex-w m-l-auto m-r-0">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
+											<input type="submit" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" name="update_qty">
+												
+											<input type="hidden" name="rowID_cart" value="{{($v->rowId)}}">
+											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num_product1" value="{{$v->qty}}">
 
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="{{$v->qty}}">
-
+											
+											
 											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
+												
 											</div>
 										</div>
+										</form>
 									</td>
 									<td class="column-5">
 										<?php
@@ -138,21 +143,6 @@
 								</div>
 							</div>
 						</div>
-
-						<div class="flex-w flex-t p-t-27 p-b-33">
-							<div class="size-208">
-								<span class="mtext-101 cl2">
-									Tổng:
-								</span>
-							</div>
-
-							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2">
-								{{Cart::total()}}
-								</span>
-							</div>
-						</div>
-
 						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
 							Proceed to Checkout
 						</button>
