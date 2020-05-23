@@ -57,10 +57,12 @@ class CartController extends Controller
 
     }
 
-
     public function checkout_cart(){
-        Cart::count();
-        return view('pages.checkout');
+        if(Cart::count()!=null){
+            Cart::count();
+            return view('pages.checkout');
+        }
+        return view('pages.cart_null');
     }
 
 }

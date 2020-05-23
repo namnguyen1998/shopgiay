@@ -8,6 +8,8 @@
 <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/checkout_responsive.css')}}">	
 <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/cart.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/cart_responsive.css')}}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/jquery-3.5.0.min.js')}}">
 
 <div class="checkout">
 		<div class="container">
@@ -28,8 +30,8 @@
 								
 								<div>
 									<!-- City / Town -->
-									<label for="checkout_city">Tỉnh/Thành phố*  </label>
-									<select name="checkout_city" id="checkout_city"  class="dropdown_item_select checkout_input" require="required">
+									<label  for="checkout_city">Tỉnh/Thành phố*  </label>
+									<select  name="checkout_city" id="checkout_city"  class="dropdown_item_select checkout_input" require="required" onChange="F2(this.value)">
 										<option>
 										
 										</option>
@@ -39,7 +41,7 @@
 								<div>
 									 <!-- District --> 
 									<label for="checkout_country">Quận/Huyện*</label>
-									<select name="checkout_country" id="checkout_country" class="dropdown_item_select checkout_input" require="required">
+									<select name="checkout_country" id="checkout_country" class="dropdown_item_select checkout_input" require="required" onChange="F3(this.value)" >
 										<option> 
 
                                         </option>
@@ -106,9 +108,7 @@
 				<!-- Order Info -->
                 <?php
                     $content=Cart::content();
-                    // echo '<pre>';
-                    // print_r($content);
-                    // echo '</pre>';
+                   
                 ?>
 				<div class="col-lg-6">
 					<div class="order checkout_section">
@@ -128,7 +128,10 @@
 								<div class="order_list_value ml-auto">Thành tiền
                                     </br>
                                     @foreach($content as $sp2)
-                                        {{number_format($sp2->price, 0, ',', '.') . "₫"}}</br>
+										<?php
+											$tong=$sp2->price*$sp2->qty;
+											echo number_format($tong, 0, ',', '.') . "₫";
+										?></br>
                                     @endforeach
                                 </div>
                                 
@@ -137,11 +140,11 @@
 								
 								<li class="d-flex flex-row align-items-center justify-content-start">
 									<div class="order_list_title">Vận chuyển</div>
-									<div id="ship" value="ship" class="order_list_value ml-auto">0₫</div>
+									<div id="ship" value="0" class="order_list_value ml-auto">0₫</div>
 								</li>
-								<li class="d-flex flex-row align-items-center justify-content-start">
-									<div class="order_list_title">Tổng</div>
-									<div class="order_list_value ml-auto">₫</div>
+								<li id="content_total" value="{{Cart::subtotal(0,'.','')}}" class="d-flex flex-row align-items-center justify-content-start">
+									<div  class="order_list_title">Tổng</div>
+									<div id="total" class="order_list_value ml-auto">{{Cart::subtotal(0,',','.')}}₫</div>
 								</li>
 							</ul>
 						</div>
@@ -170,46 +173,112 @@
 							</div>
                         </div>
                         
-
-						
                         <div  class="button order_button" ><a href="index.php" onclick="return confirm('Bạn đã đặt hàng thành công.')">ĐẶT HÀNG</a></div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 <script>
 
     function myFunction() {
-        var x;
-        x = document.getElementById("phiVanChuyen").value;
-        x = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(x);
-        document.getElementById("ship").innerHTML = x;
+        var ship, total, convert, subtotal;
+        ship = document.getElementById("phiVanChuyen").value;
+		total = document.getElementById("content_total").value;
+		convert  = parseInt(ship) + parseInt(total)
+		ship = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(ship);
+        subtotal = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(convert);
+        document.getElementById("ship").innerHTML = ship;
+		document.getElementById("total").innerHTML = subtotal;
     }
+
     function myFunction1() {
-        var x;
-        x = document.getElementById("phiVanChuyen1").value;
-        x = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(x)
-        document.getElementById("ship").innerHTML = x;
+        var ship, total, convert, subtotal;
+        ship = document.getElementById("phiVanChuyen1").value;
+		total = document.getElementById("content_total").value;
+		convert  = parseInt(ship) + parseInt(total)
+		ship = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(ship);
+        subtotal = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(convert);
+        document.getElementById("ship").innerHTML = ship;
+		document.getElementById("total").innerHTML = subtotal;
     }
+
     function myFunction2() {
-        var x;
-        x = document.getElementById("phiVanChuyen2").value;
-        x = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(x)
-        document.getElementById("ship").innerHTML = x;
+        var ship, total, convert, subtotal;
+        ship = document.getElementById("phiVanChuyen2").value;
+		total = document.getElementById("content_total").value;
+		convert  = parseInt(ship) + parseInt(total)
+		ship = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(ship);
+        subtotal = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(convert);
+        document.getElementById("ship").innerHTML = ship;
+		document.getElementById("total").innerHTML = subtotal;
     }
 
+	$(document).ready(function(){
+		$("#checkout_city").click(function(){
+		$.ajax({
+			url:'app/Http/Controllers/GetCity.php',
+			type:'json',
+			success:function(GetCity)
+			{
+				// console.log(GetCity)
+				GetCity= JSON.parse(GetCity);
+				listItem = GetCity.LtsItem;
+				console.log(listItem);
+				$.each(listItem, function(key, value){
+					tam= "<option value='" + value.ID + "'>" + value.Title + "</option>";
+					$("#checkout_city").append(tam);
+
+				});
+			}
+			})
+		})
+	})
+	
+	function F2(checkout_country)
+	{
+		$("#checkout_country").html('');
+		$.ajax({
+		url:'app/Http/Controllers/GetDistrict.php?ID='+checkout_country,
+		type:'json',
+		success:function(GetDistrict)
+		{
+			console.log(GetDistrict)
+			GetDistrict	= JSON.parse(GetDistrict);
+			
+			$.each(GetDistrict, function(key,value){
+				console.log(value)
+				tam= "<option value='" + value.ID + "'>" + value.Title + "</option>";
+				$("#checkout_country").append(tam);
+				
+			});
+		}
+		})
+	}
+
+	function F3(checkout_province)
+	{
+		$("#checkout_province").html('');
+		$.ajax({
+		url:'app/Http/Controllers/GetWard.php?ID='+checkout_province,
+		type:'json',
+		success:function(GetWard)
+		{
+			console.log(GetWard)
+			GetWard= JSON.parse(GetWard);
+			
+			$.each(GetWard, function(key, value){
+				console.log(value)
+				tam= "<option value='" + value.ID + "'>" + value.Title + "</option>";
+				$("#checkout_province").append(tam);
+				
+			});
+		}
+		})
+	}
+	
 </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-<script>
-    $(document).ready(function(){
-    var number = document.getElementById("phiVanChuyen1").value;
-    // var giatien = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(number);										
-    console.log(number);
-    // $('#_giatien').append(giatien);
-    
-});
-</script>
 
 @endsection

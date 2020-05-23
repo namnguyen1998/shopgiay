@@ -95,13 +95,13 @@
 
 							<div class="size-209">
 								<span class="mtext-110 cl2">
-								{{Cart::subtotal()}}
+								{{Cart::subtotal(0,',','.') . "₫"}}
 								</span>
 							</div>
 						</div>
 
 						
-						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"><a href="{{URL::to('/checkout')}}">
+						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"><a style="color:white;" href="{{URL::to('/checkout')}}">
 							Tiến hành đặt hàng
 							</a>
 						</button>
