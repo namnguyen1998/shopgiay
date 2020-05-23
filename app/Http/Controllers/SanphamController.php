@@ -13,11 +13,11 @@ class SanphamController extends Controller
 {
     public function chitietsanpham($id)
     {
-      $loai=  DB::table('loaisanpham')->get();
+      $loai=DB::table('loaisanpham')->get();
       $hang=DB::table('hanggiay')->get();
-      $size=DB::table('size')->join('sanpham','sanpham.id','=','size.id_giay')->where('sanpham.id',$id)->get();
+      $size=DB::table('sanpham')->join('sanpham_size','sanpham.sanpham_id','=','sanpham_size.id_sp')->where('sanpham.sanpham_id',$id)->get();
       $sanphamlq=DB::table('sanpham')->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')->limit(4)->get();
-      $ctsp=DB::table('sanpham')->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')->where('sanpham.id',$id)->get();
+      $ctsp=DB::table('sanpham')->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')->where('sanpham.sanpham_id',$id)->get();
       return view('sanpham.chitietsanpham')->with('loaisp',$loai)->with('hg',$hang)->with('chitietsp',$ctsp)->with('si',$size)->with('splq',$sanphamlq);
     }
    	public function AuthLogin(){
@@ -33,7 +33,7 @@ class SanphamController extends Controller
     	$dssanpham = DB::table('sanpham')
                    ->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')
                    ->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')
-                   ->select('sanpham.id','sanpham.hinhsp','sanpham.mota','sanpham.giatien','sanpham.giakm','sanpham.tensanpham','loaisanpham.tenloai','hanggiay.tenhang')
+                   ->select('sanpham.sanpham_id','sanpham.hinhsp','sanpham.mota','sanpham.giatien','sanpham.giakm','sanpham.tensanpham','loaisanpham.tenloai','hanggiay.tenhang')
                    ->get();
     	$qlydssanpham = view('admin.danhsachsanpham')->with('dssanpham',$dssanpham);
     	return view('admin')->with('admin.danhsachsanpham',$qlydssanpham);

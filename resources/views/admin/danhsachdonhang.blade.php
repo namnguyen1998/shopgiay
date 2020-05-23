@@ -83,7 +83,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr id="_show_data_trangthai"></tr>
+                    
+            </table>
+            <table class="table table-borderless table-data3">
+            <tr id="_show_data_trangthai"></tr>
             </table>
         </div>
         <!-- END DATA TABLE-->
@@ -116,7 +119,11 @@
                                                     + '<td>' + value.diachi + '</td>'
                                                     + '<td>' + value.sdt + '</td>'
                                                     + '<br></br>'
+
                     )
+                        
+                        
+                 
                     })
                 })
             })
