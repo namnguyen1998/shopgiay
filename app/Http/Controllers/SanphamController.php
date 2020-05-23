@@ -27,7 +27,7 @@ class SanphamController extends Controller
       $size=DB::table('sanpham')->join('sanpham_size','sanpham.id','=','sanpham_size.id_sp')->where('sanpham.id',$id)->get();
       $sanphamlq=DB::table('sanpham')->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')->limit(4)->get();
       $ctsp=DB::table('sanpham')->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')->where('sanpham.id',$id)->get();
-      return view('welcome')->with('loaisp',$loai)->with('hg',$hang)->with('chitietsp',$ctsp)->with('si',$size)->with('splq',$sanphamlq);
+      return view('pages.quickview')->with('loaisp',$loai)->with('hg',$hang)->with('chitietsp',$ctsp)->with('si',$size)->with('splq',$sanphamlq);
     }
    	public function AuthLogin(){
         $admin_id = Session::get('id');
