@@ -90,6 +90,7 @@
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
 <script>
     $(document).ready(function(){
             $("#_trangthai").change(function(){
@@ -98,14 +99,14 @@
                     url: '{{URL::to('/trang-thai-don-hang')}}',
                     method: 'get',
                     data: 'c_id=' + c_id,
-                }).done(function(cate_books){
-                    console.log(cate_books);
-                    cate_books =JSON.parse(cate_books);
+                }).done(function(don_hang){
+                    console.log(don_hang);
+                    don_hang =JSON.parse(don_hang);
 
                     // làm mới lại 
                     $('#_show_data_trangthai').empty();
-                    $.each(cate_books, function(key, value){
-                    $('#_show_data_trangthai').append('<td>' + value.ngaydat + '</td>' 
+                    $.each(don_hang, function(key, value){
+                    $('#_show_data_trangthai').append('<td>' + moment(value.ngaydat).format('DD-MM-YYYY') + '</td>' 
                                                     + '<td>' + value.tensanpham + '</td>' 
                                                     + '<td>' + value.ghichu + '</td>' 
                                                     + '<td>' + value.tentrangthai + '</td>' 
@@ -114,6 +115,7 @@
                                                     + '<td>' + value.tennguoinhan + '</td>'
                                                     + '<td>' + value.diachi + '</td>'
                                                     + '<td>' + value.sdt + '</td>'
+                                                    + '<br></br>'
                     )
                     })
                 })

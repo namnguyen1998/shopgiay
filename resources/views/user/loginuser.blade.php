@@ -15,8 +15,10 @@
     			<button type="button" class="toggle-btn" onclick="register()">Register</button>
     		</div>
     		<div class="social-icons">
-	    		<img src="{{URL::to('public/frontend/images/icons/fb.png')}}">
-	    		<img src="{{URL::to('public/frontend/images/icons/gp.png')}}">
+				<a href="{{ Route('redirect', ['facebook']) }}">
+					<img src="{{URL::to('public/frontend/images/icons/fb.png')}}"></a>
+				<a href="{{ Route('redirect', ['google']) }}">
+	    			<img src="{{URL::to('public/frontend/images/icons/gp.png')}}"></a>
 	    		<img src="{{URL::to('public/frontend/images/icons/tw.png')}}">
     		</div>
 			<?php

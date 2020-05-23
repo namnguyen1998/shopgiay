@@ -60,6 +60,14 @@ Route::get('/danh-sach-user','UserController@danhsachuser');
 Route::get('/login','UserController@getIndex');
 Route::post('/login/ss','UserController@login');
 
+// Api login Google
+Route::get('/redirect/{provider}', 'SocialController@redirectToProvider')->name('redirect');
+Route::get('/callback', 'SocialController@handleProviderCallback');
+
+// Api login Facebook
+Route::get('/redirect/{provider}', 'SocialController@redirect')->name('redirect');
+Route::get('/callback/{provider}', 'SocialController@callback');
+
 //Sản phẩm
 Route::get('/danh-sach-san-pham','SanphamController@danhsachsanpham');
 Route::resource('/them-san-pham', 'CKEditorController');
