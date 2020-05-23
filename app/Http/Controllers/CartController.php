@@ -39,6 +39,7 @@ class CartController extends Controller
         // print_r($product_info[0]->sanpham_id);
         // echo'</pre>';
     }
+
     public function show_cart(){
         return view('pages.cart.show_cart');
     }
@@ -55,4 +56,11 @@ class CartController extends Controller
         return Redirect::to('/show_cart');
 
     }
+
+
+    public function checkout_cart(){
+        Cart::count();
+        return view('pages.checkout');
+    }
+
 }
