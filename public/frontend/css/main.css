@@ -73,8 +73,32 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   font-family: Poppins-SemiBold;
   src: url('../fonts/Poppins/Poppins-SemiBold.ttf'); 
 }
+/*---------------------------------------------*/
 
-
+@font-face {
+  font-family: Roboto black;
+  src: url('../fonts/Roboto/Roboto-Black.ttf'); 
+}
+@font-face {
+  font-family: Roboto Light;
+  src: url('../fonts/Roboto/Roboto-Light.ttf'); 
+}
+@font-face {
+  font-family: Roboto Medium;
+  src: url('../fonts/Roboto/Roboto-Medium.ttf'); 
+}
+@font-face {
+  font-family: Roboto Thin;
+  src: url('../fonts/Roboto/Roboto-Thin.ttf'); 
+}
+@font-face {
+  font-family: Roboto Bold;
+  src: url('../fonts/Roboto/Roboto-Bold.ttf'); 
+}
+@font-face {
+  font-family: Roboto Light;
+  src: url('../fonts/Roboto/Roboto-Light.ttf'); 
+}
 /*---------------------------------------------*/
 @font-face {
   font-family: PlayfairDisplay-Regular;
@@ -96,7 +120,19 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   font-family: Montserrat-Bold;
   src: url('../fonts/Montserrat/Montserrat-Bold.ttf'); 
 }
-
+/*---------------------------------------------*/
+@font-face {
+  font-family: Jost Italic;
+  src: url('../fonts/Jost/Jost-Italic-VariableFont_wght.ttf'); 
+}
+@font-face {
+  font-family: Jost Italic;
+  src: url('../fonts/Jost/Jost-VariableFont_wght.ttf'); 
+}
+@font-face {
+  font-family: OpenSans Bold;
+  src: url('../fonts/OpenSan/OpenSans-Bold.ttf'); 
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ RS PLUGIN ]*/
@@ -3360,4 +3396,46 @@ input.num-product::-webkit-inner-spin-button {
     padding: 20px;
   }
 
+}
+.filter{
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom: 0;
+  z-index: 1;
+  opacity: .7s;
+  background: rgb(208,102,237);
+background: linear-gradient(90deg, rgba(208,102,237,1) 0%, rgba(171,211,231,1) 100%);
+}
+table{
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+  width: 60%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: 0px 0px 12px 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(32,32,32,.3);
+  background: #fafafa;
+  text-align: center;
+}
+th,td{
+  padding:12px 15px;
+}
+th{   
+  background:#ba68c8;
+  color:#fafafa;
+  text-transform: uppercase;
+  font-family: 'Roboto Light',sans-serif;
+}
+td{
+  font-family: 'Poppins-Medium',sans-serif;
+}
+tr:nth-child(odd)
+{
+  background-color: #eeeeee;
 }
