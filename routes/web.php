@@ -78,6 +78,9 @@ Route::get('/trang-thai-don-hang', 'DonhangController@trangthaidonhang');
 // <!-------------------------start-save-cart---------------------------------------!>
 Route::post('/save-cart','CartController@save_cart');
 Route::get('/show_cart','CartController@show_cart');
+Route::get('/delete-to-cart{rowID}','CartController@delete_to_cart');
+Route::post('/update-cart-quantity','CartController@update_cart');
+
 
 // <!----------------------------end-save-cart--------------------------------------!>
 
