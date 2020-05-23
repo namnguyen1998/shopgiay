@@ -57,8 +57,13 @@ Route::get('/edit-hang-san-xuat/{id_hang}','HangsxController@edit_hangsx');
 Route::post('/update-hang-san-xuat/{id_hang}','HangsxController@update_hangsx');
 //User
 Route::get('/danh-sach-user','UserController@danhsachuser');
-Route::get('/login','UserController@getIndex');
-Route::post('/login/ss','UserController@login');
+Route::get('/login','UserController@getLogin');
+Route::post('/login/ss','UserController@saveLogin');
+Route::get('/user-logout','UserController@logout');
+Route::get('/register','UserController@getRegister');
+Route::post('/register/ss','UserController@saveRegister');
+
+
 
 //Sản phẩm
 Route::get('/danh-sach-san-pham','SanphamController@danhsachsanpham');

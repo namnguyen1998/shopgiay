@@ -400,7 +400,7 @@
         });
     </script>
 <!--===============================================================================================-->
-    <script src="{{asset('public/frontend/js/main.js')}}"></script>
+    <script src="{{asset('public/frontend/js/main.js')}}?time=<?=time();?>"></script>
 
 </body>
 </html>

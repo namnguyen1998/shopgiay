@@ -11,7 +11,7 @@
     	<div class="from-box">
     		<div class="button-box">
     			<div id="btn"></div>
-    			<button type="button" class="toggle-btn">Đăng nhập</button>
+    			<button type="button" class="toggle-btn">Đăng ký</button>
     			
     		</div>
     		<div class="social-icons">
@@ -19,27 +19,34 @@
 	    		<img src="{{URL::to('public/frontend/images/icons/gp.png')}}">
 	    		<img src="{{URL::to('public/frontend/images/icons/tw.png')}}">
     		</div>
-			<?php
+            <?php
                             $message = Session::get('message'); 
                             if($message){
-                                echo '<div style="margin-left: 44px;color: red;font-weight: bold;font-size: 15px;">'.$message.'</div>';
+                                echo '<div style="margin-left: 44px;color: green;font-weight: bold;font-size: 15px;">'.$message.'</div>';
                                 Session::put('message',null);
                             }
                         ?>
-    		<form id="login" class="input-group" action="{{URL::to('/login/ss')}}" method="post">@csrf
-    			<input type="text" class="input-field" name="email" placeholder="Nhập email" >
-				@if($errors->has('email'))
+    		<form id="login" class="input-group" action="{{URL::to('/register/ss')}}" method="post">@csrf
+            <input type="email" name="email" id="email" class="input-field" placeholder="Nhập Email" >
+                @if($errors->has('email'))
 				<p style="font-size: 12px;color: red;}">{!!$errors->first('email')!!}</p>
                 @endif
-    			<input type="password" class="input-field" name="password" placeholder="Nhập Mật Khẩu" >
-				@if($errors->has('password'))
+    			<input type="password"  name="password" id="password" class="input-field" placeholder="Nhập Mật Khẩu" >
+                @if($errors->has('password'))
 				<p style="font-size: 12px;color: red;}">{!!$errors->first('password')!!}</p>
                 @endif
-    			<input type="checkbox" class="chech-box"><span>Nhớ Mật Khẩu</span>
-    			<button type="submit" name="login" class="submit-btn"> Đăng Nhập</button>
+				<input type="password"  name="password_confirmation" id="password_confirmation" class="input-field" placeholder="Nhập Lại Mật Khẩu" >
+                @if($errors->has('password_confirmation'))
+				<p style="font-size: 12px;color: red;}">{!!$errors->first('password_confirmation')!!}</p>
+                @endif
+                <input type="text" name="name" id="name" class="input-field" placeholder="Nhập Tên Người Dùng" >
+    			@if($errors->has('name'))
+				<p style="font-size: 12px;color: red;}">{!!$errors->first('name')!!}</p>
+                @endif
+                <input type="checkbox" checked="checked" class="chech-box"><span>Tôi đồng ý với điều khoản</span>
+    			
+                <button type="submit" class="submit-btn"> Đăng Ký</button>
     		</form>
-    		
-    		</form> 
     	</div>
     </div>
    <script>

@@ -225,6 +225,12 @@
     });
 
     /*==================================================================
+    [ Login ]*/
+    $('#js-show-login').on('click',function(){
+        $('#login').html("<div style=\"position: relative;left: 80%;background: #fff;padding: 5px;width: 160px;\"><a href=\"login\">Đăng nhập</a>/<a href=\"register\">Đăng ký</a></div>");
+    });
+
+    /*==================================================================
     [ Rating ]*/
     $('.wrap-rating').each(function(){
         var item = $(this).find('.item-rating');
