@@ -58,6 +58,16 @@ Route::post('/update-hang-san-xuat/{id_hang}','HangsxController@update_hangsx');
 //User
 Route::get('/danh-sach-user','UserController@danhsachuser');
 Route::get('/login','UserController@getIndex');
+Route::post('/login/ss','UserController@login');
+
+// Api login Google
+Route::get('/redirect/{provider}', 'SocialController@redirectToProvider')->name('redirect');
+Route::get('/callback', 'SocialController@handleProviderCallback');
+
+// Api login Facebook
+Route::get('/redirect/{provider}', 'SocialController@redirect')->name('redirect');
+Route::get('/callback/{provider}', 'SocialController@callback');
+
 //Sản phẩm
 Route::get('/danh-sach-san-pham','SanphamController@danhsachsanpham');
 Route::resource('/them-san-pham', 'CKEditorController');
@@ -74,4 +84,13 @@ Route::get('/danh-sach-ton-kho','TonkhoController@danhsachtonkho');
 Route::get('/phieu-nhap','TonkhoController@phieunhap');
 Route::get('/report','TonkhoController@report');
 Route::get('/trang-thai-don-hang', 'DonhangController@trangthaidonhang');
+
+// <!-------------------------start-save-cart---------------------------------------!>
+Route::post('/save-cart','CartController@save_cart');
+Route::get('/show_cart','CartController@show_cart');
+Route::get('/delete-to-cart{rowID}','CartController@delete_to_cart');
+Route::post('/update-cart-quantity','CartController@update_cart');
+
+
+// <!----------------------------end-save-cart--------------------------------------!>
 

@@ -28,7 +28,7 @@ class HangsxController extends Controller
     	$data = array();
     	$data['tenhang'] = $request->tenhang;
         $data['trangthai'] = $request->trangthai;
-    	$get_image = $request->file('hinh');
+    	$get_image = $request->file('hinh   ');
       
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();

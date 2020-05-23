@@ -110,7 +110,7 @@
                             <span class="au-checkmark"></span>
                         </label>
                     </td>
-                    <td>{{$sanpham->id}}</td>
+                    <td>{{$sanpham->sanpham_id}}</td>
                     <td>
                         <span class="block-email">{{$sanpham->tensanpham}}</span>
                     </td>
