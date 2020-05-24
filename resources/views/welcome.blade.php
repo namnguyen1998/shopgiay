@@ -4,6 +4,7 @@
     <title>Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 <!--===============================================================================================-->  
     <link rel="icon" type="image/png" href="{{asset('public/frontend/images/icons/favicon.png')}}"/>
 <!--===============================================================================================-->
@@ -38,14 +39,14 @@
 <body class="animsition">
     
     <!-- Header -->
-   @include('header');
+   @include('header')
 
     <!-- Cart -->
     @include('/pages/cart/cart');
 
         
 
-   @yield('content');
+   @yield('content')
    
 
 
@@ -53,7 +54,7 @@
 
 
     <!-- Footer -->
-    @include('footer');
+    @include('footer')
 
 
     <!-- Back to top -->
@@ -217,6 +218,9 @@
         </div>
     </div>
     <!--End Modal -->
+
+
+    <!-- Modal1 -->
 
 <!--===============================================================================================-->  
     <script src="{{asset('public/frontend/vendor/jquery/jquery-3.2.1.min.js')}}"></script>

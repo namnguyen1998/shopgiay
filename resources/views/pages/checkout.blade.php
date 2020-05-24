@@ -75,7 +75,7 @@
 								<div>
 									<!-- Email -->
 									<label for="checkout_email">Email*</label>
-									<input type="phone" id="checkout_email" name="email" class="checkout_input" required="required">
+									<input type="email" id="checkout_email" name="email" class="checkout_input" required="required">
                                 </div>
 
                                 <!--  -->
@@ -173,7 +173,7 @@
 							</div>
                         </div>
                         
-                        <div  class="button order_button" ><a href="index.php" onclick="return confirm('Bạn đã đặt hàng thành công.')">ĐẶT HÀNG</a></div>
+                        <div  class="button order_button" ><a href="" onclick="return confirm('Bạn đã đặt hàng thành công.')">ĐẶT HÀNG</a></div>
 					</div>
 				</div>
 			</div>

@@ -16,9 +16,10 @@
 			</span>
 		</div>
 	</div>
-	@foreach($chitietsp as $ctsp)
+
 
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
+		@foreach($chitietsp as $ctsp)
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-lg-7 p-b-30">
@@ -75,6 +76,7 @@
 											</select>
 											<div class="dropDownSelect2"></div>
 										</div>
+
 									</div>
 								</div>
 
@@ -345,7 +347,7 @@
 									</a>
 
 									<span class="stext-105 cl3">
-										{{$sp->giatien}}
+										{{number_format($sp->giatien, 0, ',', '.') . "₫"}}
 									</span>
 								</div>
 
