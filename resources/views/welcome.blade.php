@@ -4,6 +4,7 @@
     <title>Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 <!--===============================================================================================-->  
     <link rel="icon" type="image/png" href="{{asset('public/frontend/images/icons/favicon.png')}}"/>
 <!--===============================================================================================-->
@@ -38,96 +39,14 @@
 <body class="animsition">
     
     <!-- Header -->
-   @include('header');
+   @include('header')
 
     <!-- Cart -->
-    <div class="wrap-header-cart js-panel-cart">
-        <div class="s-full js-hide-cart"></div>
-
-        <div class="header-cart flex-col-l p-l-65 p-r-25">
-            <div class="header-cart-title flex-w flex-sb-m p-b-8">
-                <span class="mtext-103 cl2">
-                    Your Cart
-                </span>
-
-                <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-                    <i class="zmdi zmdi-close"></i>
-                </div>
-            </div>
-            
-            <div class="header-cart-content flex-w js-pscroll">
-                <ul class="header-cart-wrapitem w-full">
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="images/item-cart-01.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                White Shirt Pleat
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $19.00
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="images/item-cart-02.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                Converse All Star
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $39.00
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="images/item-cart-03.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                Nixon Porter Leather
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $17.00
-                            </span>
-                        </div>
-                    </li>
-                </ul>
-                
-                <div class="w-full">
-                    <div class="header-cart-total w-full p-tb-40">
-                        Total: $75.00
-                    </div>
-
-                    <div class="header-cart-buttons flex-w w-full">
-                        <a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                            View Cart
-                        </a>
-
-                        <a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-                            Check Out
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('/pages/cart/cart');
 
         
 
-   @yield('content');
+   @yield('content')
    
 
 
@@ -135,7 +54,7 @@
 
 
     <!-- Footer -->
-    @include('footer');
+    @include('footer')
 
 
     <!-- Back to top -->
@@ -145,14 +64,14 @@
         </span>
     </div>
 
-    <!-- Modal1 -->
+    <!--Start Modal1 -->
     <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
         <div class="overlay-modal1 js-hide-modal1"></div>
 
         <div class="container">
             <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
                 <button class="how-pos3 hov3 trans-04 js-hide-modal1">
-                    <img src="images/icons/icon-close.png" alt="CLOSE">
+                    <img src="{{asset('public/frontend/images/icons/icon-close.png')}}" alt="CLOSE">
                 </button>
 
                 <div class="row">
@@ -165,7 +84,7 @@
                                 <div class="slick3 gallery-lb">
                                     <div class="item-slick3" data-thumb="images/product-detail-01.jpg">
                                         <div class="wrap-pic-w pos-relative">
-                                            <img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
+                                            <img src="{{asset('public/frontend/images/product-detail-01.jpg')}}" alt="IMG-PRODUCT">
 
                                             <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
                                                 <i class="fa fa-expand"></i>
@@ -175,7 +94,7 @@
 
                                     <div class="item-slick3" data-thumb="images/product-detail-02.jpg">
                                         <div class="wrap-pic-w pos-relative">
-                                            <img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
+                                            <img src="{{asset('public/frontend/images/product-detail-02.jpg')}}" alt="IMG-PRODUCT">
 
                                             <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
                                                 <i class="fa fa-expand"></i>
@@ -185,7 +104,7 @@
 
                                     <div class="item-slick3" data-thumb="images/product-detail-03.jpg">
                                         <div class="wrap-pic-w pos-relative">
-                                            <img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
+                                            <img src="{{asset('public/frontend/images/product-detail-03.jpg')}}" alt="IMG-PRODUCT">
 
                                             <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
                                                 <i class="fa fa-expand"></i>
@@ -298,6 +217,10 @@
             </div>
         </div>
     </div>
+    <!--End Modal -->
+
+
+    <!-- Modal1 -->
 
 <!--===============================================================================================-->  
     <script src="{{asset('public/frontend/vendor/jquery/jquery-3.2.1.min.js')}}"></script>

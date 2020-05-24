@@ -26,13 +26,13 @@ class TonkhoController extends Controller
     }
     public function danhsachtonkho(){
         $this->AuthLogin();
-    	$dssanphamtonkho = DB::table('sanpham')->join('tonkho','tonkho.id_sp','=','sanpham.id')->get();
+    	$dssanphamtonkho = DB::table('sanpham')->join('tonkho','tonkho.id_sp','=','sanpham.sanpham_id')->get();
     	$qlydstonkho = view('admin.danhsachtonkho')->with('dssanphamtonkho',$dssanphamtonkho);
     	return view('admin')->with('admin.danhsachtonkho',$qlydstonkho);
     }
     public function index(){
     	$this->AuthLogin();
-    	$custom_data = DB::table('sanpham')->join('tonkho','tonkho.id_sp','=','sanpham.id')->get();
+    	$custom_data = DB::table('sanpham')->join('tonkho','tonkho.id_sp','=','sanpham.sanpham_id')->get();
         return view('admin')->with('admin.danhsachtonkho', $custom_data);
     }
     public function phieunhap(){

@@ -19,7 +19,7 @@
 							</li>
 
 							<li class="active-menu">
-								<a href="product.html">Shop</a>
+								<a href="{{URL::to('/trangsanpham')}}">Shop</a>
 							</li>
 
 							<li class="label1" data-label1="hot">
@@ -37,6 +37,10 @@
 							<li>
 								<a href="contact.html">Contact</a>
 							</li>
+							</li>
+                                <li>
+                                <a href="{{URL::to('/thanhvientrongnhom')}}">Các Thành Viên Nhóm</a>
+                            </li>
 						</ul>
 					</div>	
 

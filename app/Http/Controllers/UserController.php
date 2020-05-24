@@ -107,6 +107,13 @@ class UserController extends Controller
     	Session::forget('name');//,null);
         Session::put('id');
         return Redirect::to('./');
+
+    public function danhsachuser(){
+    	$this->AuthLogin();
+    	$dsuser = DB::table('chucvu')->join('nhanvien','nhanvien.id_chucvu','=','chucvu.id')->get();
+    	$qlydsuser = view('admin.danhsachuser')->with('dsuser',$dsuser);
+    	return view('admin')->with('admin.danhsachuser',$qlydsuser);
+
     }
 
 }

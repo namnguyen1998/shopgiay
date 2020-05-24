@@ -1,0 +1,9 @@
+---- Cart ----
+	composer require bumbummen99/shoppingcart
+
+---- Login Google, Facebook ----
+	composer require laravel/socialite
+
+---- Export Excel ----
+	composer require maatwebsite/excel
+
