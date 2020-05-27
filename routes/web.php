@@ -96,3 +96,4 @@ Route::post('/update-cart-quantity','CartController@update_cart');
 
 // checkout
 Route::get('/checkout', 'CartController@checkout_cart');
+Route::post('/saveDB','SaveInvoice@getDataInvoice');
