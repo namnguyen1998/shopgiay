@@ -82,8 +82,8 @@
                         <th>SĐT</th>
                     </tr>
                 </thead>
-                <tbody>
-                <tr id="_show_data_trangthai"></tr>
+                <tbody id=_show_data_trangthai>
+                <!-- <tr id="_show_data_trangthai"></tr> -->
             </table>
             <table class="table table-borderless table-data3">
             
@@ -109,7 +109,7 @@
                     // làm mới lại 
                     $('#_show_data_trangthai').empty();
                     $.each(don_hang, function(key, value){
-                    $('#_show_data_trangthai').append('<td>' + moment(value.ngaydat).format('DD-MM-YYYY') + '</td>' 
+                    $('#_show_data_trangthai').append('<tr><td>' + moment(value.ngaydat).format('DD-MM-YYYY') + '</td>' 
                                                     + '<td>' + value.tensanpham + '</td>' 
                                                     + '<td>' + value.ghichu + '</td>' 
                                                     + '<td>' + value.tentrangthai  + '</td>' 
@@ -117,12 +117,9 @@
                                                     + '<td>' + Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(value.tongtien) + '</td>'
                                                     + '<td>' + value.tennguoinhan + '</td>'
                                                     + '<td>' + value.diachi + '</td>'
-                                                    + '<td>' + '0' + value.sdt + '</td>'
-                                                    + '<br></br>'
+                                                    + '<td>' + '0' + value.sdt + '</td></tr>'
 
                     )
-
-                 
                     })
                 })
             })

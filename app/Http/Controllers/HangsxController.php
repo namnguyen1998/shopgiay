@@ -43,11 +43,6 @@ class HangsxController extends Controller
 
         $data['hinh'] = '';
 
-
-        // echo '<pre>';
-    	// print_r($data);
-    	// echo '</pre>';
-    	// die();
     	DB::table('hanggiay')->insert($data);
     	Session::put('message','Thêm hãng sản xuất thành công');
     	return Redirect::to('danh-sach-hang-san-xuat');

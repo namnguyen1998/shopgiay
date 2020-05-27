@@ -21,30 +21,27 @@
 						<div class="section_title">Thông tin khách hàng</div>
 						<div class="section_subtitle">Nhập thông tin </div>
 						<div class="checkout_form_container">
-							<form action="#" id="checkout_form" name="frmthongtin" class="checkout_form" method="POST">
+							<form action="{{URL::to('/saveDB')}}" id="checkout_form" name="frmthongtin" class="checkout_form" method="POST">
+							{{ csrf_field() }}
                             <div>
 									<!-- Name -->
 									<label for="checkout_zipcode">Họ tên*</label>
-									<input type="text" id="checkout_zipcode" name="sonha" class="checkout_input" required="required">
+									<input type="text" id="checkout_zipcode" name="_name" class="checkout_input" required="required">
 								</div>
 								
 								<div>
 									<!-- City / Town -->
 									<label  for="checkout_city">Tỉnh/Thành phố*  </label>
-									<select  name="checkout_city" id="checkout_city"  class="dropdown_item_select checkout_input" require="required" onChange="F2(this.value)">
-										<option>
-										
-										</option>
+									<select  name="_checkout_city" id="checkout_city"  class="dropdown_item_select checkout_input" require="required" onChange="F2(this.value)">
+										<option>Chọn Tỉnh/Thành phố</option>
 									</select>
 								</div>
 								
 								<div>
 									 <!-- District --> 
 									<label for="checkout_country">Quận/Huyện*</label>
-									<select name="checkout_country" id="checkout_country" class="dropdown_item_select checkout_input" require="required" onChange="F3(this.value)" >
-										<option> 
-
-                                        </option>
+									<select name="_checkout_district" id="checkout_district" class="dropdown_item_select checkout_input" require="required" onChange="F3(this.value)" >
+										<option>Chọn Quận/Huyện</option>
 										
 									</select>
                                 </div>
@@ -53,32 +50,31 @@
 								<div>
 									<!-- Province -->
 									<label for="checkout_province">Phường/Xã*</label>
-									<select name="checkout_province" id="checkout_province" class="dropdown_item_select checkout_input" require="required">
-										<option> 
-
-                                        </option>
+									<select name="_checkout_word" id="checkout_word" class="dropdown_item_select checkout_input" require="required">
+										<option>Chọn Phường/Xã</option>
 										
 									</select>
                                 </div>
 								<div>
 									<!-- Zipcode -->
 									<label for="checkout_zipcode">Số nhà*</label>
-									<input type="text" id="checkout_zipcode" name="sonha" class="checkout_input" required="required">
+									<input type="text" id="checkout_zipcode" name="_no" class="checkout_input" required="required">
 								</div>
 								
                                 
 								<div>
 									<!-- Phone no -->
 									<label for="checkout_phone">Số điện thoại*</label>
-									<input type="phone" id="checkout_phone" name="sdt" class="checkout_input" required="required">
+									<input type="phone" id="checkout_phone" name="_phone" class="checkout_input" required="required">
 								</div>
 								<div>
 									<!-- Email -->
 									<label for="checkout_email">Email*</label>
 									<input type="email" id="checkout_email" name="email" class="checkout_input" required="required">
+
                                 </div>
 
-                                <!--  -->
+                                <!-- Ship -->
                                 <div class="delivery">
                                     <div class="section_title">Hình thức vận chuyển</div>
                                     <div class="section_subtitle">Chọn hình thức</div>
@@ -120,7 +116,7 @@
 							<div class="order_list_bar d-flex flex-row align-items-center justify-content-start">
 								<div class="order_list_title">Sản phẩm 
                                     </br>
-                                    @foreach($content as $sp1)
+									@foreach($content as $sp1)
                                         {{$sp1->name}}</br>
                                     @endforeach
                                 </div>
@@ -138,7 +134,7 @@
 							</div>
 							<ul class="order_list">
 								
-								<li class="d-flex flex-row align-items-center justify-content-start">
+								<li id="aaa" value="aaa" class="d-flex flex-row align-items-center justify-content-start">
 									<div class="order_list_title">Vận chuyển</div>
 									<div id="ship" value="0" class="order_list_value ml-auto">0₫</div>
 								</li>
@@ -171,26 +167,34 @@
 									<span class="checkmark"></span>
 								</label>
 							</div>
-                        </div>
-                        
-                        <div  class="button order_button" ><a href="" onclick="return confirm('Bạn đã đặt hàng thành công.')">ĐẶT HÀNG</a></div>
+
+						</div>
+						             
+                        <div id="saveInvoice"  class="button order_button" ><a href="{{URL::to('/saveDB')}}" onclick="return confirm('Bạn đã đặt hàng thành công.')">ĐẶT HÀNG</a></div>
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	
+
 
 <script>
 
     function myFunction() {
         var ship, total, convert, subtotal;
         ship = document.getElementById("phiVanChuyen").value;
+		
 		total = document.getElementById("content_total").value;
 		convert  = parseInt(ship) + parseInt(total)
+		document.getElementById("aaa").value = convert;
 		ship = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(ship);
         subtotal = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(convert);
         document.getElementById("ship").innerHTML = ship;
 		document.getElementById("total").innerHTML = subtotal;
+		
     }
 
     function myFunction1() {
@@ -198,6 +202,7 @@
         ship = document.getElementById("phiVanChuyen1").value;
 		total = document.getElementById("content_total").value;
 		convert  = parseInt(ship) + parseInt(total)
+		document.getElementById("aaa").value = convert;
 		ship = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(ship);
         subtotal = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(convert);
         document.getElementById("ship").innerHTML = ship;
@@ -209,6 +214,7 @@
         ship = document.getElementById("phiVanChuyen2").value;
 		total = document.getElementById("content_total").value;
 		convert  = parseInt(ship) + parseInt(total)
+		document.getElementById("aaa").value = convert;
 		ship = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(ship);
         subtotal = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(convert);
         document.getElementById("ship").innerHTML = ship;
@@ -222,10 +228,8 @@
 			type:'json',
 			success:function(GetCity)
 			{
-				// console.log(GetCity)
 				GetCity= JSON.parse(GetCity);
 				listItem = GetCity.LtsItem;
-				console.log(listItem);
 				$.each(listItem, function(key, value){
 					tam= "<option value='" + value.ID + "'>" + value.Title + "</option>";
 					$("#checkout_city").append(tam);
@@ -236,48 +240,98 @@
 		})
 	})
 	
-	function F2(checkout_country)
-	{
-		$("#checkout_country").html('');
+	function F2(checkout_country){
+		$("#checkout_district").html('');
 		$.ajax({
 		url:'app/Http/Controllers/GetDistrict.php?ID='+checkout_country,
 		type:'json',
 		success:function(GetDistrict)
 		{
-			console.log(GetDistrict)
-			GetDistrict	= JSON.parse(GetDistrict);
 			
+			GetDistrict	= JSON.parse(GetDistrict);
+			console.log(GetDistrict)
 			$.each(GetDistrict, function(key,value){
-				console.log(value)
 				tam= "<option value='" + value.ID + "'>" + value.Title + "</option>";
-				$("#checkout_country").append(tam);
+				$("#checkout_district").append(tam);
 				
 			});
 		}
 		})
 	}
 
-	function F3(checkout_province)
-	{
-		$("#checkout_province").html('');
+	function F3(checkout_province){
+		$("#checkout_word").html('');
 		$.ajax({
 		url:'app/Http/Controllers/GetWard.php?ID='+checkout_province,
 		type:'json',
 		success:function(GetWard)
 		{
-			console.log(GetWard)
 			GetWard= JSON.parse(GetWard);
-			
 			$.each(GetWard, function(key, value){
-				console.log(value)
 				tam= "<option value='" + value.ID + "'>" + value.Title + "</option>";
-				$("#checkout_province").append(tam);
+				$("#checkout_word").append(tam);
 				
 			});
 		}
 		})
 	}
 	
+	
+	$(document).ready(function(){
+		$("#saveInvoice").click(function(){
+		
+			subtotal = document.getElementById("aaa").value;
+			city = document.getElementById("checkout_city").value;
+			district = document.getElementById("checkout_district").value;
+			word = document.getElementById("checkout_word").value;
+			// pro = document.getElementById("pro").value;
+			// a = pro.values()
+			// console.log(a)
+			// console.log(subtotal)
+			// console.log(city)
+			// console.log(district)
+			// console.log(word)
+
+			// Ship
+			$.ajax({
+					url: 'app/Http/Controllers/SaveInvoice.php',
+					method: 'post',
+					data: 
+						'subtotal=' + subtotal
+					
+			})
+
+			// City
+			$.ajax({
+					url: 'app/Http/Controllers/SaveInvoice.php',
+					method: 'post',
+					data: 
+						'city=' + city
+					
+			})
+
+			// District
+			$.ajax({
+				url: 'app/Http/Controllers/SaveInvoice.php',
+				method: 'post',
+				data: 
+					'district=' + district
+				
+			})
+
+			// Province
+			$.ajax({
+				url: 'app/Http/Controllers/SaveInvoice.php',
+				method: 'post',
+				data: 
+					'word=' + word
+				
+			})
+				
+		})
+	})
+
+
 </script>
 
 
