@@ -17,10 +17,15 @@ Route::get('/', 'HomeController@index');
 Route::get('/trangsanpham','HomeController@trangsanpham');
 
 
+Route::get('/send-mail',function(){
+	$data = [
+		'title' => 'Mail from shop giay',
+		'body' => 'Cám ơn bạn đã mua hàng'
+	];
+	\Mail::to('le.trong.an256@gmail.com')->send(new \App\Mail\TestMail($data));
+	echo "Email sent!";
 
-
-
-
+});
 
 
 //Admin Backend
