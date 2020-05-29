@@ -63,8 +63,10 @@ Route::post('/login/ss','UserController@saveLogin');
 Route::get('/user-logout','UserController@logout');
 Route::get('/register','UserController@getRegister');
 Route::post('/register/ss','UserController@saveRegister');
-
-
+Route::get('/forgotpassword','UserController@forgotPassword');
+Route::post('/forgotpassword/sendmail','UserController@sendMail');
+Route::get('/user/reset_password/{user_id}','UserController@formResetPassword');
+Route::post('/reset_password/ss','UserController@resetPassword');
 
 // Api login Google
 Route::get('/redirect/{provider}', 'SocialController@redirectToProvider')->name('redirect');

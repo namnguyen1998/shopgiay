@@ -7,6 +7,9 @@ use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use DB;
+use Sentinel;
+use Reminder;
+use Mail;
 session_start();
 
 class UserController extends Controller
@@ -107,6 +110,7 @@ class UserController extends Controller
     	Session::forget('name');//,null);
         Session::put('id');
         return Redirect::to('./');
+    }
 
     public function danhsachuser(){
     	$this->AuthLogin();
@@ -114,6 +118,70 @@ class UserController extends Controller
     	$qlydsuser = view('admin.danhsachuser')->with('dsuser',$dsuser);
     	return view('admin')->with('admin.danhsachuser',$qlydsuser);
 
+    }
+
+    public function forgotPassword()
+    {
+    	return view('user/forgot');
+    }
+
+    public function sendMail(Request $request)
+    {
+        $user = DB::table('users')->where('email',$request->email)->first();
+
+        //print_r($user);exit;
+        if(($user)== null){
+            return redirect()->back()->with(['Lỗi' => 'Email không có trong hệ thống']);
+        }
+
+        $str = \Str::random(32);
+        $url = \URL::to('/user/reset_password/'.$user->id.'?key='.$str);
+        
+        $details = [
+            'url' => $url
+        ];
+
+        \Mail::to($user->email)->send(new \App\Mail\SendMailForgetPassword($details));
+        
+        return redirect()->back()->with(['Thành công' => 'Email đã được gửi. Vui lòng kiểm tra mail để cập nhật thông tin.']);
+    }
+
+    public function formResetPassword($user_id =null)
+    {
+        return view('user/resetpassword')->with('user_id', $user_id);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $rules=[
+            'password_new' => 'required',
+            'password_new_confirmation' => 'required|same:password_new',
+        ];
+
+        $message = [
+            'password_new.required' => 'Vui lòng nhập password mới',
+            'password_new_confirmation.required' => 'Vui lòng xác nhận password mới',
+            'password_new_confirmation.same' => 'Password xác nhận không khớp',
+
+        ];
+
+        $input = $request->all();
+
+        $validator = \Validator::make($input, $rules, $message);
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator);
+        }
+
+
+        $result = DB::table('users')
+                    ->where('id', $input['user_id'])
+                    ->update(['password' => $input['password_new']]);
+        
+    	
+            Session::put('message','Cập nhật thành công');
+            
+            return redirect()->back();
     }
 
 }

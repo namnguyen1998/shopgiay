@@ -36,9 +36,6 @@
                                 <a href="contact.html">Contact</a>
                             </li>
 
-                                <li>
-                                <a href="{{URL::to('/login')}}">Login</a>
-                            </li>
                             </li>
                                 <li>
                                 <a href="{{URL::to('/thanhvientrongnhom')}}">Các Thành Viên Nhóm</a>
