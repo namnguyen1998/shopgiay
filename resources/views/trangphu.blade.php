@@ -38,17 +38,17 @@
 <body class="animsition">
     
     <!-- Header -->
-   @include('headerphu');
+   @include('headerphu')
 
     <!-- Cart -->
-    @include('/pages/cart/cart');
+    @include('/pages/cart/cart')
 
     
 
 
         
 
-   @yield('content');
+   @yield('content')
    
 
 
@@ -56,7 +56,7 @@
 
 
     <!-- Footer -->
-    @include('footer');
+    @include('footer')
 
 
     <!-- Back to top -->

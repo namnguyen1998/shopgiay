@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index');
 Route::get('/trangsanpham','HomeController@trangsanpham');
 Route::get('chitietsanpham/{id}','SanphamController@chitietsanpham');
-// Route::get('/{id}','SanphamController@chitietsanpham1');
+Route::get('/quickview/{id}','SanphamController@chitietsanpham1');
 Route::get('/thanhvientrongnhom','HomeController@thanhvientrongnhom');
 
 

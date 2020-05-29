@@ -35,13 +35,14 @@ class SanphamController extends Controller
 
     public function chitietsanpham1($id)
     {
+      $output='';
       $loai=  DB::table('loaisanpham')->get();
       $hang=DB::table('hanggiay')->get();
       $size=DB::table('sanpham')->join('sanpham_size','sanpham.sanpham_id','=','sanpham_size.id_sp')->where('sanpham.sanpham_id',$id)->get();
-      $sanphamlq=DB::table('sanpham')->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')->limit(4)->get();
       $ctsp=DB::table('sanpham')->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')->where('sanpham.sanpham_id',$id)->get();
-      return view('pages.quickview')->with('loaisp',$loai)->with('hg',$hang)->with('chitietsp',$ctsp)->with('si',$size)->with('splq',$sanphamlq);
-    }
+      return $ctsp;
+  }
+
 
     public function danhsachsanpham(){
     	$this->AuthLogin();

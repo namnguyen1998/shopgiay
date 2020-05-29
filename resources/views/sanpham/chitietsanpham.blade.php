@@ -54,7 +54,8 @@
 							</h4>
 
 							<span class="mtext-106 cl2">
-								{{$ctsp->giatien}}
+								{{number_format($ctsp->giatien, 0, ',', '.') . "₫"}}
+
 							</span>
 
 							
@@ -365,4 +366,5 @@
 			</div>
 		</div>
 	</section>
+	
 @endsection

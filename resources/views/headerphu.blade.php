@@ -22,21 +22,9 @@
 								<a href="{{URL::to('/trangsanpham')}}">Shop</a>
 							</li>
 
-							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
-							</li>
-
 							<li>
-								<a href="blog.html">Blog</a>
-							</li>
-
-							<li>
-								<a href="about.html">About</a>
-							</li>
-
-							<li>
-								<a href="contact.html">Contact</a>
-							</li>
+                                <a href="{{URL::to('/login')}}">Login</a>
+                            </li>
 							</li>
                                 <li>
                                 <a href="{{URL::to('/thanhvientrongnhom')}}">Các Thành Viên Nhóm</a>

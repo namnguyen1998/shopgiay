@@ -7,9 +7,9 @@ use DB;
 class HomeController extends Controller
 {
     public function index(){
-    	$slide= DB::table('slide')->get();
+    	$slide=DB::table('slide')->get();
     	$product=DB::table('sanpham')->limit(16)->get();
-    	return view('pages.home',compact('slide','product'));
+        return view('pages.home',compact('slide','product'));
     }
     public function trangsanpham(){
     	$product=DB::table('sanpham')->paginate(12);

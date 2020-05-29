@@ -274,9 +274,11 @@
     
     /*==================================================================
     [ Show modal1 ]*/
-    $('.js-show-modal1').on('click',function(e){
-        e.preventDefault();
-        $('.js-modal1').addClass('show-modal1');
+    $('.js-show-modal1').on('click',function(){
+        var pro_id=$(this).data("id");
+        alert(pro_id);
+        $('.js-modal1').addClass('show-modal1').load('/shopgiay/quickview/'+pro_id);
+        // $('#demo').load('/shopgiay/quickview/'+pro_id).dialog('open');
     });
 
     $('.js-hide-modal1').on('click',function(){
