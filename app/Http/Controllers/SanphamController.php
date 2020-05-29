@@ -59,4 +59,9 @@ class SanphamController extends Controller
       $sanpham_timkiem=DB::table('sanpham')->where('tensanpham','like','%'.$keyword.'%')->get();
       return $sanpham_timkiem;
     }
+
+    public function quickview($sanpham_id)
+    {
+      return view('pages.quickview');
+    }
 }

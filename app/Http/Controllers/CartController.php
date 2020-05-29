@@ -28,6 +28,7 @@ class CartController extends Controller
         $data['qty']=$quantity;
         $data['name']=$product_info[0]->tensanpham;
         $data['price']=$product_info[0]->giatien;
+        $data['description']=$product_info[0]->mota;
         $data['weight']='123';
         $data['options']['image']=$product_info[0]->hinhsp;
         Cart::add($data);

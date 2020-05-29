@@ -14,5 +14,6 @@ class HomeController extends Controller
     public function trangsanpham(){
     	$product=DB::table('sanpham')->get();
     	return view('pages.trangsanpham',compact('product'));
-    }
+	}
+
 }

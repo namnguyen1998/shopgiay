@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index');
 Route::get('/trangsanpham','HomeController@trangsanpham');
 Route::get('chitietsanpham/{id}','SanphamController@chitietsanpham');
+Route::get('quickview/{sanpham_id}','SanphamController@quickview');
 
 
 Route::post('/timkiem','SanphamController@timkiemsanpham');
