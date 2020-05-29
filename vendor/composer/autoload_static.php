@@ -135,7 +135,6 @@ class ComposerStaticInite14252c91c60e99b69b5cc4d01b05423
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
-            'Svg\\' => 4,
         ),
         'R' => 
         array (
@@ -194,7 +193,6 @@ class ComposerStaticInite14252c91c60e99b69b5cc4d01b05423
         'F' => 
         array (
             'Fruitcake\\Cors\\' => 15,
-            'FontLib\\' => 8,
             'Fideloper\\Proxy\\' => 16,
             'Faker\\' => 6,
             'Facade\\Ignition\\' => 16,
@@ -351,10 +349,6 @@ class ComposerStaticInite14252c91c60e99b69b5cc4d01b05423
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
-        'Svg\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg',
-        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -466,10 +460,6 @@ class ComposerStaticInite14252c91c60e99b69b5cc4d01b05423
         'Fruitcake\\Cors\\' => 
         array (
             0 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
-        ),
-        'FontLib\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phenx/php-font-lib/src/FontLib',
         ),
         'Fideloper\\Proxy\\' => 
         array (
@@ -589,6 +579,7 @@ class ComposerStaticInite14252c91c60e99b69b5cc4d01b05423
         'App\\Http\\Controllers\\HangsxController' => __DIR__ . '/../..' . '/app/Http/Controllers/HangsxController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\LoaisanphamController' => __DIR__ . '/../..' . '/app/Http/Controllers/LoaisanphamController.php',
+        'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
         'App\\Http\\Controllers\\RestApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/RestApiController.php',
         'App\\Http\\Controllers\\SanphamController' => __DIR__ . '/../..' . '/app/Http/Controllers/SanphamController.php',
         'App\\Http\\Controllers\\TonkhoController' => __DIR__ . '/../..' . '/app/Http/Controllers/TonkhoController.php',

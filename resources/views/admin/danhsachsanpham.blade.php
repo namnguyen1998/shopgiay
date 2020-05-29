@@ -115,7 +115,7 @@
                         <span class="block-email">{{$sanpham->tensanpham}}</span>
                     </td>
                     <td><img src="public/frontend/images/{{$sanpham->hinhsp}}" height="100" width="100"></td>
-                    <!-- <td class="desc">Samsung S8 Black</td> -->
+                    
                     <td>{{$sanpham->mota}}</td>
                     <td><?php
                             $giatien = $sanpham->giatien;
@@ -129,9 +129,11 @@
                     <td>
                         <div class="table-data-feature">
                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <a href="{{URL::to('/edit-product/' .$sanpham->sanpham_id)}}">
                                 <i class="zmdi zmdi-edit"></i>
                             </button>
                             <button class="item " data-toggle="tooltip" data-placement="top"  title="Delete" onclick="return confirm('Bạn có chắc muốn XOÁ sản phẩm này?')" >
+                                <a href="{{URL::to('/delete-product/' .$sanpham->sanpham_id)}}">
                                 <i class="zmdi zmdi-delete"></i>
                             </button>
                         </div>

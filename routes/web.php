@@ -46,11 +46,8 @@ Route::get('/edit-loai-san-pham/{id_loaisp}','LoaisanphamController@edit_loaisp'
 Route::post('/update-loai-san-pham/{id_loaisp}','LoaisanphamController@update_loaisp');
 //Hãng 
 Route::get('/danh-sach-hang-san-xuat','HangsxController@dshsx');
-
-
 Route::get('/them-hang-san-xuat','HangsxController@themhsx');
 Route::post('/save-hang-san-xuat','HangsxController@save_hsx');
-
 Route::get('/delete-hang-san-xuat/{id_hang}','HangsxController@delete_hangsx');
 
 
@@ -81,7 +78,11 @@ Route::post('/save-cart','CartController@save_cart');
 Route::get('/show_cart','CartController@show_cart');
 Route::get('/delete-to-cart{rowID}','CartController@delete_to_cart');
 Route::post('/update-cart-quantity','CartController@update_cart');
-
-
 // <!----------------------------end-save-cart--------------------------------------!>
-
+//product
+Route::get('/add-product','ProductController@add_product');
+Route::get('/edit-product/{sanpham_id}','ProductController@edit_product');
+Route::get('/delete-product/{sanpham_id}','ProductController@delete_product');
+Route::get('/all-product','ProductController@all_product');
+Route::post('/save-product','ProductController@save_product');
+Route::post('/update-product/{sanpham_id}','ProductController@update_product');

@@ -45,17 +45,20 @@
 
 <div class="card">
     <div class="card-header" style="text-align: center">
-        <strong>THÊM SẢN PHẨM</strong>
+        <strong>SỬA SẢN PHẨM</strong>
     </div>
     <div class="card-body card-block">
-        <form action="{{URL::to('/save-product')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
-            @csrf
+     
+        @foreach($edit_product as $key=>$v)
+        
+        <form action="{{URL::to('/update-product/'.$v->sanpham_id)}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+           @csrf
             <div class="row form-group">
                 <div class="col col-md-3">
                     <label for="text-input" class=" form-control-label">Tên sản phẩm</label>
                 </div>
                 <div class="col-12 col-md-9">
-                    <input type="text" id="text-input" name="tensanpham" placeholder="Nhập tên sản phẩm" class="form-control">
+                    <input type="text" id="text-input" name="tensanpham" value="{{$v->tensanpham}}" class="form-control">
                 </div>
             </div>
             <div class="row form-group">
@@ -63,7 +66,7 @@
                     <label for="form-control" class=" form-control-label">Mô tả</label>
                 </div>
                 <div class="col-12 col-md-9">
-                    <textarea name="mota" id="textarea-input" rows="9" placeholder="Nhập mô tả sản phẩm" class="form-control"></textarea> 
+                    <textarea name="mota" id="textarea-input" rows="9"  class="form-control">{{$v->mota}}</textarea> 
                    
                     
                 </div>
@@ -73,7 +76,7 @@
                     <label for="text-input" class=" form-control-label">Giá tiền</label>
                 </div>
                 <div class="col-12 col-md-9">
-                    <input type="text" id="text-input" name="giatien" placeholder="Nhập giá sản phẩm" class="form-control">
+                    <input type="text" id="text-input" name="giatien" value="{{$v->giatien}}" class="form-control">
                 </div>
             </div>
             <div class="row form-group">
@@ -81,7 +84,7 @@
                     <label for="text-input" class=" form-control-label">Giá khuyến mãi</label>
                 </div>
                 <div class="col-12 col-md-9">
-                    <input type="text" id="text-input" name="giakm" placeholder="Nhập giá khuyến mãi sản phẩm" class="form-control">
+                    <input type="text" id="text-input" name="giakm" value="{{$v->giakm}}" class="form-control">
                 </div>
             </div>
             <div class="row form-group">
@@ -90,9 +93,15 @@
                 </div>
                 <div class="col-12 col-md-9">
                     <select name="loaisanpham" id="select" class="form-control">
-                    	@foreach($dsloaisp as $lsp)
+
+                        @foreach($dsloaisp as $lsp)
+                        @if($lsp->id==$v->id_loaisp)
+                        <option selected value="{{$lsp->id}}">{{$lsp->tenloai}}</option>
+                        @else
                         <option value="{{$lsp->id}}">{{$lsp->tenloai}}</option>
+                        @endif
                         @endforeach
+
                     </select>
                 </div>
             </div>
@@ -102,8 +111,12 @@
                 </div>
                 <div class="col-12 col-md-9">
                     <select name="hanggiay" id="select" class="form-control">
-                    	@foreach($dshang as $hang)
+                        @foreach($dshang as $hang)
+                        @if($hang->id==$v->id_hanggiay)
+                        <option selected value="{{$hang->id}}">{{$hang->tenhang}}</option>
+                        @else
                         <option value="{{$hang->id}}">{{$hang->tenhang}}</option>
+                        @endif
                         @endforeach
                     </select>
                 </div>
@@ -112,17 +125,21 @@
                 <div class="col col-md-3">
                     <label for="file-input" class=" form-control-label">File ảnh</label>
                 </div>
+                <img src="{{URL::to('public/frontend/images/'.$v->hinhsp)}}" alt="" height="50" width="50">
                 <div class="col-12 col-md-9">
                     <input type="file" id="file-input" name="hinh" class="form-control-file">
+                    
                 </div>
+                
             </div>
     </div>
     <div class="card-footer"style="text-align: center">
         <button type="submit" class="btn btn-primary btn-sm">
-            <i class="fa fa-dot-circle-o"></i> Thêm
+            <i class="fa fa-dot-circle-o"></i> Sửa
         </button>
     </div>
     </form>
+    @endforeach
 </div>
 <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
