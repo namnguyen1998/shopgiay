@@ -8,8 +8,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/checkout_responsive.css')}}">	
 <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/cart.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/cart_responsive.css')}}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/jquery-3.5.0.min.js')}}">
+
 
 <div class="checkout">
 		<div class="container">
@@ -21,12 +20,12 @@
 						<div class="section_title">Thông tin khách hàng</div>
 						<div class="section_subtitle">Nhập thông tin </div>
 						<div class="checkout_form_container">
-							<form action="{{URL::to('/saveDB')}}" id="checkout_form" name="frmthongtin" class="checkout_form" method="POST">
-							{{ csrf_field() }}
+							<form action="{{URL::to('/saveInvoice')}}" id="checkout_form" name="frmthongtin" class="checkout_form" method="GET">
+							<!-- {{ csrf_field() }} -->
                             <div>
 									<!-- Name -->
 									<label for="checkout_zipcode">Họ tên*</label>
-									<input type="text" id="checkout_zipcode" name="_name" class="checkout_input" required="required">
+									<input type="text" id="name" name="name" class="checkout_input" required="required">
 								</div>
 								
 								<div>
@@ -58,19 +57,19 @@
 								<div>
 									<!-- Zipcode -->
 									<label for="checkout_zipcode">Số nhà*</label>
-									<input type="text" id="checkout_zipcode" name="_no" class="checkout_input" required="required">
+									<input type="text" id="no" name="no" class="checkout_input" required="required">
 								</div>
 								
                                 
 								<div>
 									<!-- Phone no -->
 									<label for="checkout_phone">Số điện thoại*</label>
-									<input type="phone" id="checkout_phone" name="_phone" class="checkout_input" required="required">
+									<input type="phone" id="phone" name="phone" class="checkout_input" required="required">
 								</div>
 								<div>
 									<!-- Email -->
 									<label for="checkout_email">Email*</label>
-									<input type="email" id="checkout_email" name="email" class="checkout_input" required="required">
+									<input type="email" id="email" name="email" class="checkout_input" required="required">
 
                                 </div>
 
@@ -162,7 +161,7 @@
 									<input type="radio" name="radio">
 									<span class="checkmark"></span>
 								</label>
-								<label class="payment_option clearfix">Thanh toán trực tiếp qua ngân hàng
+								<label id="checkmark" class="payment_option clearfix">Thanh toán trực tiếp qua ngân hàng
 									<input type="radio" checked="checked" name="radio">
 									<span class="checkmark"></span>
 								</label>
@@ -170,17 +169,17 @@
 
 						</div>
 						             
-                        <div id="saveInvoice"  class="button order_button" ><a href="{{URL::to('/saveDB')}}" onclick="return confirm('Bạn đã đặt hàng thành công.')">ĐẶT HÀNG</a></div>
+                        <div id="saveInvoice"  class="button order_button" ><a href="{{URL::to('/saveInvoice')}}" onclick="return confirm('Bạn đã đặt hàng thành công.')">ĐẶT HÀNG</a></div>
 
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/jquery-3.5.0.min.js')}}">
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
 <script>
 
     function myFunction() {
@@ -249,7 +248,6 @@
 		{
 			
 			GetDistrict	= JSON.parse(GetDistrict);
-			console.log(GetDistrict)
 			$.each(GetDistrict, function(key,value){
 				tam= "<option value='" + value.ID + "'>" + value.Title + "</option>";
 				$("#checkout_district").append(tam);
@@ -276,61 +274,70 @@
 		})
 	}
 	
+
+	// $(document).ready(function(){
+	// 	$("#name").keyup(function(){
+		
+	// 		subtotal = document.getElementById("name").value;
+
+	// 		// Ship
+	// 		$.ajax({
+	// 			url: '{{URL::to('/saveInvoice')}}',
+	// 			method: 'get',
+	// 			data:{
+	// 					'name':name,
+						
+
+	// 				}
+    //         	})	
+	// 	})
+	// })
 	
+	// $(document).ready(function(){
+	// 	$("#phone").keyup(function(){
+		
+	// 		subtotal = document.getElementById("phone").value;
+
+	// 		// Ship
+	// 		$.ajax({
+	// 			url: '{{URL::to('/saveInvoice')}}',
+	// 			method: 'get',
+	// 			data:{
+	// 					'phone':phone,
+						
+
+	// 				}
+    //         	})	
+	// 	})
+	// })
+
+
 	$(document).ready(function(){
 		$("#saveInvoice").click(function(){
 		
 			subtotal = document.getElementById("aaa").value;
 			city = document.getElementById("checkout_city").value;
 			district = document.getElementById("checkout_district").value;
-			word = document.getElementById("checkout_word").value;
-			// pro = document.getElementById("pro").value;
-			// a = pro.values()
-			// console.log(a)
-			// console.log(subtotal)
-			// console.log(city)
-			// console.log(district)
-			// console.log(word)
+			ward = document.getElementById("checkout_word").value;
 
 			// Ship
 			$.ajax({
-					url: 'app/Http/Controllers/SaveInvoice.php',
-					method: 'post',
-					data: 
-						'subtotal=' + subtotal
-					
-			})
+				url: '{{URL::to('/saveInvoice')}}',
+				method: 'get',
+				data:{
+						'subtotal':subtotal,
+						'city': city,
+						'district': district,
+						'ward': ward,
 
-			// City
-			$.ajax({
-					url: 'app/Http/Controllers/SaveInvoice.php',
-					method: 'post',
-					data: 
-						'city=' + city
-					
-			})
-
-			// District
-			$.ajax({
-				url: 'app/Http/Controllers/SaveInvoice.php',
-				method: 'post',
-				data: 
-					'district=' + district
-				
-			})
-
-			// Province
-			$.ajax({
-				url: 'app/Http/Controllers/SaveInvoice.php',
-				method: 'post',
-				data: 
-					'word=' + word
-				
-			})
+					}
+            	}).done(function(don_hang){
+                    console.log(don_hang);
+                    
+            	})
 				
 		})
 	})
-
 
 </script>
 

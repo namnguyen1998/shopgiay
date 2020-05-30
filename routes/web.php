@@ -91,6 +91,7 @@ Route::get('/phieu-nhap','TonkhoController@phieunhap');
 Route::get('/report','TonkhoController@report');
 Route::get('/trang-thai-don-hang', 'DonhangController@trangthaidonhang');
 
+
 // <!-------------------------start-save-cart---------------------------------------!>
 Route::post('/save-cart','CartController@save_cart');
 Route::get('/show_cart','CartController@show_cart');
@@ -102,4 +103,4 @@ Route::post('/update-cart-quantity','CartController@update_cart');
 
 // checkout
 Route::get('/checkout', 'CartController@checkout_cart');
-Route::post('/saveDB','SaveInvoice@getDataInvoice');
+Route::get('/saveInvoice','SaveInvoice@getDataInvoice');
