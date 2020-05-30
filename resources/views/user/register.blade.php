@@ -25,6 +25,13 @@
                                 echo '<div style="margin-left: 44px;color: green;font-weight: bold;font-size: 15px;">'.$message.'</div>';
                                 Session::put('message',null);
                             }
+
+                            $error = Session::get('error'); 
+                            if($error){
+                                echo '<div style="margin-left: 44px;color: red;font-weight: bold;font-size: 15px;">'.$error.'</div>';
+                                Session::put('error',null);
+                            }
+    
                         ?>
     		<form id="login" class="input-group" action="{{URL::to('/register/ss')}}" method="post">@csrf
             <input type="email" name="email" id="email" class="input-field" placeholder="Nhập Email" >
