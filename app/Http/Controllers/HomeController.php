@@ -16,6 +16,11 @@ class HomeController extends Controller
     	return view('pages.trangsanpham',compact('product'));
 
     }
+    public function sanphamgioitinh($id)
+    {
+       $product=DB::table('sanpham')->join('gioitinh','gioitinh.id','=','sanpham.id_gioitinh')->where('id_gioitinh',$id)->paginate(12);
+        return view('pages.trangsanphamgioitinh',compact('product'));
+    }
     public function thanhvientrongnhom(){
     	return view('thanhvientrongnhom');
     }

@@ -24,55 +24,7 @@
                             </div>
                                 
                             <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-                                <a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                    Shop Now
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-slick1" style="background-image: url({{'public/frontend/images/slide2.jpg'}});">
-                    <div class="container h-full">
-                        <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-                            <div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
-                                <span class="ltext-101 cl2 respon2" style="color:whitesmoke">
-                                    Converse New-Season
-                                </span>
-                            </div>
-                                
-                            <div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
-                                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="color:whitesmoke">
-                                    Classic & 1970s
-                                </h2>
-                            </div>
-                                
-                            <div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-                                <a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                    Shop Now
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-slick1" style="background-image: url({{'public/frontend/images/slide3.jpg'}});">
-                    <div class="container h-full">
-                        <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-                            <div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
-                                <span class="ltext-101 cl2 respon2" style="color:whitesmoke">
-                                    Nike Collection 2020
-                                </span>
-                            </div>
-                                
-                            <div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
-                                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="color:whitesmoke">
-                                    New arrivals
-                                </h2>
-                            </div>
-                                
-                            <div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
-                                <a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                                <a href="{{URL::to('/trangsanpham')}}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
                                     Shop Now
                                 </a>
                             </div>
@@ -92,7 +44,7 @@
                     <div class="block1 wrap-pic-w">
                         <img src="{{'public/frontend/images/banner4.jpg'}}" alt="IMG-BANNER">
 
-                        <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                        <a href="{{URL::to('/trangsanphamgioitinh/1')}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                             <div class="block1-txt-child1 flex-col-l">
                                 <span class="block1-name ltext-102 trans-04 p-b-8">
                                     Women
@@ -117,7 +69,7 @@
                     <div class="block1 wrap-pic-w">
                         <img src="{{'public/frontend/images/banner2.jpg'}}" alt="IMG-BANNER">
 
-                        <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                        <a href="{{URL::to('/trangsanphamgioitinh/2')}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                             <div class="block1-txt-child1 flex-col-l">
                                 <span class="block1-name ltext-102 trans-04 p-b-8">
                                     Men
@@ -142,10 +94,10 @@
                     <div class="block1 wrap-pic-w">
                         <img src="{{'public/frontend/images/banner3.jpg'}}" alt="IMG-BANNER">
 
-                        <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                        <a href="{{URL::to('/trangsanphamgioitinh/3')}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                             <div class="block1-txt-child1 flex-col-l">
                                 <span class="block1-name ltext-102 trans-04 p-b-8">
-                                    Accessories
+                                    Both
                                 </span>
 
                                 <span class="block1-info stext-102 trans-04">
@@ -195,11 +147,7 @@
                 </div>
 
                 <div class="flex-w flex-c-m m-tb-10">
-                    <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-                        <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-                        <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                         Filter
-                    </div>
+                 
 
                     <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
                         <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
@@ -272,10 +220,9 @@
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-pic hov-img0">
+                            <a href="{{URL::to('/chitietsanpham/'.$pd->sanpham_id)}}">
                             <img src="public/frontend/images/{{$pd->hinhsp}}" alt="IMG-PRODUCT">
-                            <button  class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" data-id="{{$pd->sanpham_id}}">
-                                Quick View
-                            </button>
+                            </a>
                         </div>
                         <div id="product-details"></div>
                         <div class="block2-txt flex-w flex-t p-t-14">

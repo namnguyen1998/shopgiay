@@ -18,7 +18,7 @@ Route::get('/trangsanpham','HomeController@trangsanpham');
 Route::get('chitietsanpham/{id}','SanphamController@chitietsanpham');
 Route::get('/quickview/{id}','SanphamController@chitietsanpham1');
 Route::get('/thanhvientrongnhom','HomeController@thanhvientrongnhom');
-
+Route::get('/trangsanphamgioitinh/{id}','HomeController@sanphamgioitinh');
 
 Route::post('/timkiem','SanphamController@timkiemsanpham');
 Route::get('/ajax','SanphamController@ajaxtimkiem');
