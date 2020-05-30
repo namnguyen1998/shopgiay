@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login and Registration</title>
+	<title>Reset Password</title>
     <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/login1.css')}}">
 </head>
 <body>
@@ -11,7 +11,7 @@
     	<div class="from-box">
     		<div class="button-box">
     			<div id="btn"></div>
-    			<button type="button" class="toggle-btn">Đăng nhập</button>
+    			<button type="button" class="toggle-btn">Lấy lại mật khẩu</button>
     			
     		</div>
     		<div class="social-icons">
@@ -28,18 +28,18 @@
                                 Session::put('message',null);
                             }
                         ?>
-    		<form id="login" class="input-group" action="{{URL::to('/login/ss')}}" method="post">@csrf
-    			<input type="text" class="input-field" name="email" placeholder="Nhập email" >
+    		<form id="login" class="input-group" action="{{URL::to('/forgotpassword/sendmail')}}" method="post">@csrf
+				@if(session('Lỗi'))
+					<div>{{ session('Lỗi')}}</div>
+				@endif
+				@if(session('Thành công'))
+					<div>{{ session('Thành công')}}</div>
+				@endif
+    			<input type="email" class="input-field" name="email" placeholder="Nhập email" >
 				@if($errors->has('email'))
-				<p style="font-size: 12px;color: red;}">{!!$errors->first('email')!!}</p>
-                @endif
-    			<input type="password" class="input-field" name="password" placeholder="Nhập Mật Khẩu" >
-				@if($errors->has('password'))
-				<p style="font-size: 12px;color: red;}">{!!$errors->first('password')!!}</p>
-                @endif
-    			<input type="checkbox" class="chech-box"><span>Nhớ Mật Khẩu</span>
-				<a href="{{URL::to('/forgotpassword')}}"><div style="position:absolute;margin-left:150px;margin-top:-40px">Forgot PassWord</div></a>
-    			<button type="submit" name="login" class="submit-btn"> Đăng Nhập</button>
+				<p style="font-size: 12px;color: red;}">{!!$errors->first('email')!!}</p> 
+				@endif 		
+    			<button type="submit" name="" class="submit-btn">Gửi</button>
     		</form>
     		
     		</form> 
@@ -49,6 +49,7 @@
    	var x=document.getElementById("login");
 	var y=document.getElementById("register");
 	var z=document.getElementById("btn");
+	
 
 	function register(){
     x.style.left="-400px";

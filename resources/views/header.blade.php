@@ -36,9 +36,6 @@
                                 <a href="contact.html">Contact</a>
                             </li>
 
-                                <li>
-                                <a href="{{URL::to('/login')}}">Login</a>
-                            </li>
                             </li>
                                 <li>
                                 <a href="{{URL::to('/thanhvientrongnhom')}}">Các Thành Viên Nhóm</a>
@@ -64,8 +61,8 @@
                         <a href="#" class="dis-block icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
                             <i class="zmdi zmdi-favorite-outline"></i>
                         </a>
-                        <div class="icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11 " id="js-show-login">
-                            <i class="zmdi  zmdi-account-circle"></i>
+                        <div class="icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11" id="js-show-login">
+                            <i class="zmdi  zmdi-account-circle "></i>
                         </div>
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
@@ -75,8 +72,10 @@
                                     </div>
                                     <div class="account-dropdown js-dropdown">
                                         <div class="account-dropdown__footer">
+                                            @if(Session::get('name'))
                                             <a href="{{URL::to('/user-logout')}}">
                                                 <i class="zmdi zmdi-power"></i>Logout</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
