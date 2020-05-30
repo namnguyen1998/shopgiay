@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login and Registration</title>
-    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/login.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/login1.css')}}">
 </head>
 <body>
     <div class="hero">
@@ -38,7 +38,7 @@
 				<p style="font-size: 12px;color: red;}">{!!$errors->first('password')!!}</p>
                 @endif
     			<input type="checkbox" class="chech-box"><span>Nhớ Mật Khẩu</span>
-				<a href="{{URL::to('/forgotpassword')}}"><div style="text-align:right">Forgot PassWord</div></a>
+				<a href="{{URL::to('/forgotpassword')}}"><div style="position:absolute;margin-left:150px;margin-top:-40px">Forgot PassWord</div></a>
     			<button type="submit" name="login" class="submit-btn"> Đăng Nhập</button>
     		</form>
     		
