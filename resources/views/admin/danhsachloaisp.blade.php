@@ -6,40 +6,7 @@
         <img src="{{asset('public/backend/images/icon/logo.png')}}" alt="Cool Admin" />
     </a>
 </div>
-<div class="menu-sidebar__content js-scrollbar1">
-    <nav class="navbar-sidebar">
-        <ul class="list-unstyled navbar__list">
-            <li>
-                <a class="js-arrow" href="{{URL::to('/dashboard')}}">
-                    <i class="fas fa-tachometer-alt"></i>Tổng quan</a>
-            </li>
-             <li>
-                <a href="{{URL::to('/danh-sach-hang-san-xuat')}}">
-                    <i class="fa fa-inbox"></i>Quản lý hãng sản xuất</a>
-            </li>
-            <li class="active has-sub">
-                <a href="{{URL::to('/danh-sach-loai-san-pham')}}">
-                    <i class="fa fa-archive"></i>Quản lý loại sản phẩm</a>
-            </li>
-            <li>
-                <a href="{{URL::to('/danh-sach-san-pham')}}">
-                    <i class="fas fa-th"></i>Quản lý sản phẩm</a>
-            </li>                       
-            <li>
-                <a href="{{URL::to('/danh-sach-don-hang')}}">
-                    <i class="far fa-check-square"></i>Quản lý đơn hàng</a>
-            </li>
-            <li>
-                <a href="{{URL::to('/danh-sach-ton-kho')}}">
-                    <i class="fa fa-tasks"></i>Quản lý tồn kho</a>
-            </li>
-            <li>
-                <a href="{{URL::to('/danh-sach-user')}}">
-                    <i class="fa fa-users"></i>Quản lý user</a>
-            </li>                        
-        </ul>
-    </nav>
-</div>
+@include('/admin/menu');
 </aside>
 <div class="row">
     <div class="col-md-12">
@@ -74,9 +41,26 @@
                     <i class="zmdi zmdi-filter-list"></i>filters</button>
             </div>
             <div class="table-data__tool-right">
-                <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                    <a href="{{URL::to('/them-loai-san-pham')}}">
-                    <i class="zmdi zmdi-plus"></i>add item</button></a>
+
+                <?php
+                $id_nhanvien = Session::get('id');
+                if($dsuser){
+                    foreach ($dsuser as $key => $value) {
+                        if($value->id == $id_nhanvien){
+                            //echo $value->roles;
+                            if ($value->roles == 0 || $value->roles == 1 ) {
+            ?>
+                               <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                <a href="{{URL::to('/them-loai-san-pham')}}">
+                                <i class="zmdi zmdi-plus"></i>add item</button></a>
+            <?php
+                        } 
+                    
+                    }
+                }
+            }
+                ?>
+                
                 <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                     <select class="js-select2" name="type">
                         <option selected="selected">Export</option>
@@ -115,13 +99,37 @@
                         <td class="desc">{{$lsp->tenloai}}</td>
                         <td>
                             <div class="table-data-feature">
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <?php
+                                $id_nhanvien = Session::get('id');
+                                if($dsuser){
+                                    foreach ($dsuser as $key => $value) {
+                                        if($value->id == $id_nhanvien){
+                                            //echo $value->roles;
+                                            if ($value->roles == 0 || $value->roles == -2 ) {
+                                                ?>
+                              <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                 <a href="{{URL::to('/edit-loai-san-pham/'.$lsp->id)}}"><i class="zmdi zmdi-edit"></i></a>
                                 </button>
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete" onclick="return confirm('Bạn có chắc muốn XOÁ sản phẩm này?')">
+                                <?php
+                                            } if($value->roles == 0 || $value->roles == -1 ){
+                                                ?>
+                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete" onclick="return confirm('Bạn có chắc muốn XOÁ sản phẩm này?')">
                                 <a href="{{URL::to('/delete-loai-san-pham/'.$lsp->id)}}">
                                     <i class="zmdi zmdi-delete"></i></a>
                                 </button>
+                                                <?php
+                                            }
+                                        
+                                        }
+                                    }
+                                }
+                                 ?>
+
+
+
+
+                               
+                               
                                 <!-- <script>
                                     function ConfirmDelete()
                                         {

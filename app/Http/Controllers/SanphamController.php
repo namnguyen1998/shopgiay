@@ -33,15 +33,7 @@ class SanphamController extends Controller
       return view('sanpham.chitietsanpham')->with('loaisp',$loai)->with('hg',$hang)->with('chitietsp',$ctsp)->with('si',$size)->with('splq',$sanphamlq);
     }
 
-    public function chitietsanpham1($id)
-    {
-      $loai=  DB::table('loaisanpham')->get();
-      $hang=DB::table('hanggiay')->get();
-      $size=DB::table('sanpham')->join('sanpham_size','sanpham.sanpham_id','=','sanpham_size.id_sp')->where('sanpham.sanpham_id',$id)->get();
-      $sanphamlq=DB::table('sanpham')->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')->limit(4)->get();
-      $ctsp=DB::table('sanpham')->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')->where('sanpham.sanpham_id',$id)->get();
-      return view('pages.quickview')->with('loaisp',$loai)->with('hg',$hang)->with('chitietsp',$ctsp)->with('si',$size)->with('splq',$sanphamlq);
-    }
+
 
     public function danhsachsanpham(){
     	$this->AuthLogin();
@@ -50,15 +42,19 @@ class SanphamController extends Controller
                    ->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')
                    ->select('sanpham.sanpham_id','sanpham.hinhsp','sanpham.mota','sanpham.giatien','sanpham.giakm','sanpham.tensanpham','loaisanpham.tenloai','hanggiay.tenhang')
                    ->get();
-    	$qlydssanpham = view('admin.danhsachsanpham')->with('dssanpham',$dssanpham);
+      $dsuser = DB::table('nhanvien')->get();
+    	$qlydssanpham = view('admin.danhsachsanpham')->with('dssanpham',$dssanpham)->with('dsuser',$dsuser);
     	return view('admin')->with('admin.danhsachsanpham',$qlydssanpham);
     }
 
     public function themsanpham(){
     	$this->AuthLogin();
     	$dshang = DB::table('hanggiay')->orderby('id','desc')->get();
-    	$dsloaisp = DB::table('loaisanpham')->orderby('id','desc')->get();
-    	return view('admin.themsanpham')->with('dshang',$dshang)->with('dsloaisp',$dsloaisp);
+      $dsloaisp = DB::table('loaisanpham')->orderby('id','desc')->get();
+      $dsuser = DB::table('nhanvien')->get();
+      $gioitinh = DB::table('gioitinh')->get();
+      return view('admin.themsanpham')->with('dshang',$dshang)->with('dsloaisp',$dsloaisp)
+      ->with('dsuser',$dsuser)->with('gioitinh',$gioitinh);
     }
 
     public function timkiemsanpham(Request $req){
@@ -69,6 +65,7 @@ class SanphamController extends Controller
       $sanpham_timkiem=DB::table('sanpham')->where('tensanpham','like','%'.$keyword.'%')->get();
       return view('sanpham.timkiem')->with('loaisp',$loai)->with('hg',$hang)->with('sanphamtimkiem',$sanpham_timkiem);
     }
+
 
     public function ajaxtimkiem(Request $req)
     {
@@ -114,6 +111,8 @@ class SanphamController extends Controller
       
     }
 
+
   } 
+
 
 }

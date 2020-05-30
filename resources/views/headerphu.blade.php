@@ -22,21 +22,9 @@
 								<a href="{{URL::to('/trangsanpham')}}">Shop</a>
 							</li>
 
-							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
-							</li>
-
 							<li>
-								<a href="blog.html">Blog</a>
-							</li>
-
-							<li>
-								<a href="about.html">About</a>
-							</li>
-
-							<li>
-								<a href="contact.html">Contact</a>
-							</li>
+                                <a href="{{URL::to('/login')}}">Login</a>
+                            </li>
 							</li>
                                 <li>
                                 <a href="{{URL::to('/thanhvientrongnhom')}}">Các Thành Viên Nhóm</a>
@@ -50,7 +38,10 @@
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?php  $i = 0;
+																																		foreach(Cart::content() as $_count)
+																																			$i ++;
+																																		$count = $i; echo $count?>">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 
@@ -75,7 +66,10 @@
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="<?php  $i = 0;
+																																		foreach(Cart::content() as $_count)
+																																			$i ++;
+																																		$count = $i; echo $count?>">
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 

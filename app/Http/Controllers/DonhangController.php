@@ -18,8 +18,9 @@ class DonhangController extends Controller
     	->join('sanpham','sanpham.sanpham_id','=','donhang.id_sp')
     	->join('trangthaidonhang','trangthaidonhang.id','=','donhang.id_trangthai')
     	->select('donhang.id','donhang.ngaydat','donhang.tongtien','donhang.ghichu','donhang.id_trangthai','sanpham.tensanpham','trangthaidonhang.tentrangthai','donhang.id_chitietdh')
-    	->get();
-    	$qlydsdonhang = view('admin.danhsachdonhang')->with('danhsachdonhang',$danhsachdonhang);
+        ->get();
+        $dsuser = DB::table('nhanvien')->get();
+    	$qlydsdonhang = view('admin.danhsachdonhang')->with('danhsachdonhang',$danhsachdonhang)->with('dsuser',$dsuser);
     	return view('admin')->with('admin.danhsachdonhang',$qlydsdonhang);
     }
 

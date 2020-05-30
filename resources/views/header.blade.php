@@ -23,18 +23,7 @@
                                 <a href="{{URL::to('/trangsanpham')}}">Shop</a>
                             </li>
 
-                             <li class="label1" data-label1="hot">
-                                <a href="shoping-cart.html">Features</a>
-                            </li>
-
-                            <li>
-                                <a href="#">Blog</a>
-                            </li>
-
-                        
-                            <li>
-                                <a href="contact.html">Contact</a>
-                            </li>
+                            
 
                             </li>
                                 <li>
@@ -50,8 +39,11 @@
                         <div class="icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                             <i class="zmdi zmdi-search"></i>
                         </div>
-
-                        <div class="icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+                        
+                        <div class="icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?php  $i = 0;
+																																		foreach(Cart::content() as $_count)
+																																			$i ++;
+																																		$count = $i; echo $count?>">
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </div>
                         
@@ -97,7 +89,10 @@
                     <i class="zmdi zmdi-search"></i>
                 </div>
 
-                <div class="icon-header-item cl13 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+                <div class="icon-header-item cl13 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="<?php  $i = 0;
+																																		foreach(Cart::content() as $_count)
+																																			$i ++;
+																																		$count = $i; echo $count?>">
                     <i class="zmdi zmdi-shopping-cart"></i>
                 </div>
 

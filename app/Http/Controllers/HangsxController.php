@@ -43,11 +43,6 @@ class HangsxController extends Controller
 
         $data['hinh'] = '';
 
-
-        // echo '<pre>';
-    	// print_r($data);
-    	// echo '</pre>';
-    	// die();
     	DB::table('hanggiay')->insert($data);
     	Session::put('message','Thêm hãng sản xuất thành công');
     	return Redirect::to('danh-sach-hang-san-xuat');
@@ -55,7 +50,8 @@ class HangsxController extends Controller
     public function dshsx(){
         $this->AuthLogin();
        $dshang = DB::table('hanggiay')->get();
-       return view('admin.danhsachnsx')->with('dshang', $dshang);
+       $dsuser = DB::table('nhanvien')->get();
+       return view('admin.danhsachnsx')->with('dshang', $dshang)->with('dsuser', $dsuser);
     }
 
     public function delete_hangsx($id_hang){

@@ -6,40 +6,7 @@
         <img src="{{asset('public/backend/images/icon/logo.png')}}" alt="Cool Admin" />
     </a>
 </div>
-<div class="menu-sidebar__content js-scrollbar1">
-    <nav class="navbar-sidebar">
-        <ul class="list-unstyled navbar__list">
-            <li>
-                <a class="js-arrow" href="{{URL::to('/dashboard')}}">
-                    <i class="fas fa-tachometer-alt"></i>Tổng quan</a>
-            </li>
-             <li>
-                <a href="{{URL::to('/danh-sach-hang-san-xuat')}}">
-                    <i class="fa fa-inbox"></i>Quản lý hãng sản xuất</a>
-            </li>
-            <li>
-                <a href="{{URL::to('/danh-sach-loai-san-pham')}}">
-                    <i class="fa fa-archive"></i>Quản lý loại sản phẩm</a>
-            </li>
-            <li>
-                <a href="{{URL::to('/danh-sach-san-pham')}}">
-                    <i class="fas fa-th"></i>Quản lý sản phẩm</a>
-            </li>                       
-            <li class="active has-sub">
-                <a href="{{URL::to('/danh-sach-don-hang')}}">
-                    <i class="far fa-check-square"></i>Quản lý đơn hàng</a>
-            </li>
-            <li>
-                <a href="{{URL::to('/danh-sach-ton-kho')}}">
-                    <i class="fa fa-tasks"></i>Quản lý tồn kho</a>
-            </li>
-            <li>
-                <a href="{{URL::to('/danh-sach-user')}}">
-                    <i class="fa fa-users"></i>Quản lý user</a>
-            </li>                        
-        </ul>
-    </nav>
-</div>
+@include('/admin/menu');
 </aside>
 <div class="row m-t-30">
     <div class="col-md-12">
@@ -82,8 +49,8 @@
                         <th>SĐT</th>
                     </tr>
                 </thead>
-                <tbody>
-                <tr id="_show_data_trangthai"></tr>
+                <tbody id=_show_data_trangthai>
+                <!-- <tr id="_show_data_trangthai"></tr> -->
             </table>
             <table class="table table-borderless table-data3">
             
@@ -109,7 +76,7 @@
                     // làm mới lại 
                     $('#_show_data_trangthai').empty();
                     $.each(don_hang, function(key, value){
-                    $('#_show_data_trangthai').append('<td>' + moment(value.ngaydat).format('DD-MM-YYYY') + '</td>' 
+                    $('#_show_data_trangthai').append('<tr><td>' + moment(value.ngaydat).format('DD-MM-YYYY') + '</td>' 
                                                     + '<td>' + value.tensanpham + '</td>' 
                                                     + '<td>' + value.ghichu + '</td>' 
                                                     + '<td>' + value.tentrangthai  + '</td>' 
@@ -117,12 +84,9 @@
                                                     + '<td>' + Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(value.tongtien) + '</td>'
                                                     + '<td>' + value.tennguoinhan + '</td>'
                                                     + '<td>' + value.diachi + '</td>'
-                                                    + '<td>' + '0' + value.sdt + '</td>'
-                                                    + '<br></br>'
+                                                    + '<td>' + '0' + value.sdt + '</td></tr>'
 
                     )
-
-                 
                     })
                 })
             })
