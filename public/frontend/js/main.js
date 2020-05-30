@@ -275,17 +275,11 @@
 
     /*==================================================================
     [ Show modal1 ]*/
-<<<<<<< HEAD
-    $('.js-show-modal1').on('click',function(){
-        var pro_id=$(this).data("id");
-        alert(pro_id);
-        $('.js-modal1').addClass('show-modal1').load('/shopgiay/quickview/'+pro_id);
-        // $('#demo').load('/shopgiay/quickview/'+pro_id).dialog('open');
-=======
+
     $('.js-show-modal1').on('click', function(e) {
         e.preventDefault();
         $('.js-modal1').addClass('show-modal1');
->>>>>>> 53838edecfab7b534404bcaf8a4eaade39b7e306
+
     });
 
     $('.js-hide-modal1').on('click', function() {
