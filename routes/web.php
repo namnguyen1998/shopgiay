@@ -56,6 +56,11 @@ Route::post('/update-hang-san-xuat/{id_hang}','HangsxController@update_hangsx');
 //User
 Route::get('/danh-sach-user','UserController@danhsachuser');
 Route::get('/login','UserController@getIndex');
+
+Route::get('/sua_admin','UserController@sua_admin');
+
+
+
 //Sản phẩm
 Route::get('/danh-sach-san-pham','SanphamController@danhsachsanpham');
 Route::resource('/them-san-pham', 'CKEditorController');
@@ -86,3 +91,7 @@ Route::get('/delete-product/{sanpham_id}','ProductController@delete_product');
 Route::get('/all-product','ProductController@all_product');
 Route::post('/save-product','ProductController@save_product');
 Route::post('/update-product/{sanpham_id}','ProductController@update_product');
+//phan quyen
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

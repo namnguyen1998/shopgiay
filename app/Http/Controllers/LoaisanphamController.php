@@ -25,8 +25,9 @@ class LoaisanphamController extends Controller
     }
     public function dslsp(){
         $this->AuthLogin();
-    	$danhsachloaisp = DB::table('loaisanpham')->get();
-    	$quanlylsp = view('admin.danhsachloaisp')->with('danhsachloaisp',$danhsachloaisp);
+        $danhsachloaisp = DB::table('loaisanpham')->get();
+        $dsuser = DB::table('nhanvien')->get();
+    	$quanlylsp = view('admin.danhsachloaisp')->with('danhsachloaisp',$danhsachloaisp)->with('dsuser',$dsuser);
     	return view('admin')->with('admin.danhsachloaisp',$quanlylsp);
     }
 

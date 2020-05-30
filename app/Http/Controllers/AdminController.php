@@ -26,7 +26,9 @@ class AdminController extends Controller
     //Trả về trang chính admin
     public function showDashboard(){
          $this->AuthLogin();
-    	return view('admin.dashboard');
+         $dsuser = DB::table('nhanvien')->get();
+        
+    	return view('admin.dashboard',compact('dsuser'));
     }
 
     public function login(Request $request){
@@ -35,7 +37,7 @@ class AdminController extends Controller
     	$password = $request ->password;
 
     	$result = DB::table('nhanvien')->where('username',$username)
-    	->where('password',$password)->where('id_chucvu','=','1')->first();
+    	->where('password',$password)->first();
     	if($result){
     		Session::put('ten',$result->ten);
     		Session::put('id',$result->id);

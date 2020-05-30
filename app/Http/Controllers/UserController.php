@@ -28,4 +28,14 @@ class UserController extends Controller
     	$qlydsuser = view('admin.danhsachuser')->with('dsuser',$dsuser);
     	return view('admin')->with('admin.danhsachuser',$qlydsuser);
     }
+    public function sua_admin(Request $req){
+        $quyen = $req->property;
+        $id = $req->id;
+        echo $id;
+        $dsuser = DB::table('nhanvien')->where('id', $id)->update(['roles' => $quyen]);
+        if($dsuser){
+            Session::put('message','Cập nhật thành công');
+        }
+        return Redirect::to('danh-sach-user');
+    }
 }
