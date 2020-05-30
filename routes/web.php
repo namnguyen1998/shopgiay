@@ -20,8 +20,21 @@ Route::get('chitietsanpham/{id}','SanphamController@chitietsanpham');
 Route::get('/thanhvientrongnhom','HomeController@thanhvientrongnhom');
 
 
+
 Route::post('/timkiem','SanphamController@timkiemsanpham');
 Route::get('/ajax','SanphamController@ajaxtimkiem');
+
+Route::get('/send-mail',function(){
+	$data = [
+		'title' => 'Mail from shop giay',
+		'body' => 'Cám ơn bạn đã mua hàng'
+	];
+	\Mail::to('le.trong.an256@gmail.com')->send(new \App\Mail\TestMail($data));
+	echo "Email sent!";
+
+});
+
+
 
 //Admin Backend
 Route::get('/admin', 'AdminController@getIndex');
