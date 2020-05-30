@@ -33,15 +33,7 @@ class SanphamController extends Controller
       return view('sanpham.chitietsanpham')->with('loaisp',$loai)->with('hg',$hang)->with('chitietsp',$ctsp)->with('si',$size)->with('splq',$sanphamlq);
     }
 
-    public function chitietsanpham1($id)
-    {
-      $loai=  DB::table('loaisanpham')->get();
-      $hang=DB::table('hanggiay')->get();
-      $size=DB::table('sanpham')->join('sanpham_size','sanpham.sanpham_id','=','sanpham_size.id_sp')->where('sanpham.sanpham_id',$id)->get();
-      $sanphamlq=DB::table('sanpham')->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')->limit(4)->get();
-      $ctsp=DB::table('sanpham')->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')->where('sanpham.sanpham_id',$id)->get();
-      return view('pages.quickview')->with('loaisp',$loai)->with('hg',$hang)->with('chitietsp',$ctsp)->with('si',$size)->with('splq',$sanphamlq);
-    }
+
 
     public function danhsachsanpham(){
     	$this->AuthLogin();
@@ -69,6 +61,7 @@ class SanphamController extends Controller
       $sanpham_timkiem=DB::table('sanpham')->where('tensanpham','like','%'.$keyword.'%')->get();
       return view('sanpham.timkiem')->with('loaisp',$loai)->with('hg',$hang)->with('sanphamtimkiem',$sanpham_timkiem);
     }
+
 
     public function ajaxtimkiem(Request $req)
     {

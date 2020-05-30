@@ -2,23 +2,6 @@
 @section('content')  
 <div class="container">
 			<div class="flex-w flex-sb-m p-b-52">
-				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-                        All Products
-                    </button>
-
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".1">
-                        Women
-                    </button>
-
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".2">
-                        Men
-                    </button>
-
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".3">
-                        Both
-                    </button>
-				</div>
 
 				
 				
@@ -46,7 +29,7 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<a href="{{URL::to('/chitietsanpham/'.$pd->sanpham_id)}}">
-                            <img src="public/frontend/images/{{$pd->hinhsp}}" alt="IMG-PRODUCT">
+                            <img src="{{URL::to('public/frontend/images/'.$pd->hinhsp)}}" alt="IMG-PRODUCT">
                             </a>
 						</div>
 
@@ -83,8 +66,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="{{'public/frontend/images/icons/icon-heart-01.png'}}" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{'public/frontend/images/icons/icon-heart-02.png'}}" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="{{URL::to('public/frontend/images/icons/icon-heart-01.png')}}" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{URL::to('public/frontend/images/icons/icon-heart-02.png')}}" alt="ICON">
 								</a>
 							</div>
 						</div>
