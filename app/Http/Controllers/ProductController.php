@@ -23,7 +23,11 @@ class ProductController extends Controller
         $this->AuthLogin();
         $dsloaisp = DB::table('loaisanpham')->orderby('id','desc')->get();
         $dshang = DB::table('hanggiay')->get();
-        return view('admin.themsanpham')->with('dsloaisp',$dsloaisp)->with('dshang', $dshang);
+        $gioitinh = DB::table('gioitinh')->get();
+        $dsuser = DB::table('nhanvien')->get();
+        
+        return view('admin.themsanpham')->with('dsloaisp',$dsloaisp)->with('dshang', $dshang)
+               ->with('gioitinh',$gioitinh)->with('dsuser',$dsuser);
     }
  
     public function save_product(Request $request){
@@ -35,6 +39,7 @@ class ProductController extends Controller
         $data['giakm'] = $request->giakm;
         $data['id_loaisp'] = $request->loaisanpham;
         $data['id_hanggiay'] = $request->hanggiay;
+        $data['id_gioitinh'] = $request->gioitinh;
     	$get_image = $request->file('hinh');
       
         if($get_image){
@@ -50,7 +55,7 @@ class ProductController extends Controller
 
         $data['hinhsp'] = '';
     	DB::table('sanpham')->insert($data);
-    	Session::put('message','Thêm sp sản xuất thành công');
+    	Session::put('message','Thêm sp thành công');
     	return Redirect::to('/danh-sach-san-pham');
     }
     // public function dshsx(){
@@ -70,8 +75,11 @@ class ProductController extends Controller
         $this->AuthLogin();
         $dsloaisp = DB::table('loaisanpham')->orderby('id','desc')->get();
         $dshang = DB::table('hanggiay')->get();
+        $gioitinh = DB::table('gioitinh')->get();
         $edit_product = DB::table('sanpham')->where('sanpham_id',$sanpham_id)->get();
-        $quanlysanpham = view('admin.editsanpham')->with('edit_product',$edit_product)->with('dsloaisp',$dsloaisp)->with('dshang', $dshang);
+        $dsuser = DB::table('nhanvien')->get();
+        $quanlysanpham = view('admin.editsanpham')->with('edit_product',$edit_product)->with('dsloaisp',$dsloaisp)
+        ->with('dsuser',$dsuser)->with('dshang', $dshang)->with('gioitinh',$gioitinh);
         
         return view('admin')->with('admin.editsanpham',$quanlysanpham);
     }
@@ -84,6 +92,7 @@ class ProductController extends Controller
         $data['giakm'] = $request->giakm;
         $data['id_loaisp'] = $request->loaisanpham;
         $data['id_hanggiay'] = $request->hanggiay;
+        $data['id_gioitinh'] = $request->gioitinh;
         $get_image = $request->file('hinh');
       
         if($get_image){

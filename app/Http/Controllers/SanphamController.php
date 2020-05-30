@@ -42,8 +42,11 @@ class SanphamController extends Controller
     public function themsanpham(){
     	$this->AuthLogin();
     	$dshang = DB::table('hanggiay')->orderby('id','desc')->get();
-    	$dsloaisp = DB::table('loaisanpham')->orderby('id','desc')->get();
-    	return view('admin.themsanpham')->with('dshang',$dshang)->with('dsloaisp',$dsloaisp);
+      $dsloaisp = DB::table('loaisanpham')->orderby('id','desc')->get();
+      $dsuser = DB::table('nhanvien')->get();
+      $gioitinh = DB::table('gioitinh')->get();
+      return view('admin.themsanpham')->with('dshang',$dshang)->with('dsloaisp',$dsloaisp)
+      ->with('dsuser',$dsuser)->with('gioitinh',$gioitinh);
     }
     public function timkiemsanpham(Request $req){
       $keyword=$req->keyword_submit;

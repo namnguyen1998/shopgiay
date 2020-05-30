@@ -74,6 +74,22 @@
             </div>
             <div class="row form-group">
                 <div class="col col-md-3">
+                    <label for="select" class=" form-control-label">Giới tính</label>
+                </div>
+                <div class="col-12 col-md-9">
+                    <select name="gioitinh" id="select" class="form-control">
+                        @foreach($gioitinh as $lsp)
+                        @if($lsp->id==$v->id_gioitinh)
+                        <option selected value="{{$lsp->id}}">{{$lsp->gioitinh}}</option>
+                        @else
+                        <option value="{{$lsp->id}}">{{$lsp->gioitinh}}</option>
+                        @endif
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col col-md-3">
                     <label for="select" class=" form-control-label">Hãng giày</label>
                 </div>
                 <div class="col-12 col-md-9">
