@@ -222,6 +222,7 @@
                         <div class="block2-pic hov-img0">
                             <a href="{{URL::to('/chitietsanpham/'.$pd->sanpham_id)}}">
                             <img src="public/frontend/images/{{$pd->hinhsp}}" alt="IMG-PRODUCT">
+
                             </a>
                         </div>
                         <div id="product-details"></div>

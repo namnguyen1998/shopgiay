@@ -151,6 +151,7 @@ class UserController extends Controller
         return view('user/resetpassword')->with('user_id', $user_id);
     }
 
+
     public function resetPassword(Request $request)
     {
         $rules=[
@@ -182,6 +183,18 @@ class UserController extends Controller
             Session::put('message','Cập nhật thành công');
             
             return redirect()->back();
+    }
+
+
+    public function sua_admin(Request $req){
+        $quyen = $req->property;
+        $id = $req->id;
+        echo $id;
+        $dsuser = DB::table('nhanvien')->where('id', $id)->update(['roles' => $quyen]);
+        if($dsuser){
+            Session::put('message','Cập nhật thành công');
+        }
+        return Redirect::to('danh-sach-user');
     }
 
 }

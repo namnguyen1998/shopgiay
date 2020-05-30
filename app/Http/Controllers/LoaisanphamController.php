@@ -21,12 +21,14 @@ class LoaisanphamController extends Controller
     }
     public function themlsp(){
         $this->AuthLogin();
-    	return view('admin.themloaisp');
+        $dsuser = DB::table('nhanvien')->get();
+    	return view('admin.themloaisp')->with('dsuser',$dsuser);
     }
     public function dslsp(){
         $this->AuthLogin();
-    	$danhsachloaisp = DB::table('loaisanpham')->get();
-    	$quanlylsp = view('admin.danhsachloaisp')->with('danhsachloaisp',$danhsachloaisp);
+        $danhsachloaisp = DB::table('loaisanpham')->get();
+        $dsuser = DB::table('nhanvien')->get();
+    	$quanlylsp = view('admin.danhsachloaisp')->with('danhsachloaisp',$danhsachloaisp)->with('dsuser',$dsuser);
     	return view('admin')->with('admin.danhsachloaisp',$quanlylsp);
     }
 

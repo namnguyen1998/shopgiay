@@ -21,7 +21,7 @@
 						<div class="section_title">Thông tin khách hàng</div>
 						<div class="section_subtitle">Nhập thông tin </div>
 						<div class="checkout_form_container">
-							<form action="{{URL::to('/saveDB')}}" id="checkout_form" name="frmthongtin" class="checkout_form" method="POST">
+							<form action="#" id="checkout_form" name="frmthongtin" class="checkout_form" method="POST">
 							{{ csrf_field() }}
                             <div>
 									<!-- Name -->
@@ -170,7 +170,7 @@
 
 						</div>
 						             
-                        <div id="saveInvoice"  class="button order_button" ><a href="{{URL::to('/saveDB')}}" onclick="return confirm('Bạn đã đặt hàng thành công.')">ĐẶT HÀNG</a></div>
+                        <div id="saveInvoice"  class="button order_button" ><a href="#" onclick="return confirm('Bạn đã đặt hàng thành công.')">ĐẶT HÀNG</a></div>
 
 					</div>
 				</div>

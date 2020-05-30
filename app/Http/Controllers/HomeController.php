@@ -15,6 +15,7 @@ class HomeController extends Controller
     	$product=DB::table('sanpham')->paginate(12);
     	return view('pages.trangsanpham',compact('product'));
 
+
     }
     public function sanphamgioitinh($id)
     {
@@ -24,4 +25,6 @@ class HomeController extends Controller
     public function thanhvientrongnhom(){
     	return view('thanhvientrongnhom');
     }
+
+	
 }

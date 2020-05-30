@@ -31,7 +31,7 @@
 							<table class="table-shopping-cart">
 								<tr class="table_head">
 									<th class="column-1">Hình ảnh</th>
-									<th class="column-2">Mô tả</th>
+									<th class="column-2">Tên sản phẩm</th>
 									<th class="column-3">Giá tiền</th>
 									<th class="column-4">Số lượng</th>
 									<th class="column-5">Tổng</th>

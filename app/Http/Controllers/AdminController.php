@@ -26,15 +26,16 @@ class AdminController extends Controller
     //Trả về trang chính admin
     public function showDashboard(){
          $this->AuthLogin();
-    	return view('admin.dashboard');
+         $dsuser = DB::table('nhanvien')->get();
+        
+    	return view('admin.dashboard',compact('dsuser'));
     }
 
     public function login(Request $request){
 
-
-
     	$result = DB::table('nhanvien')->where('username',$request ->username)
-    	->where('password',md5($request ->password))->where('id_chucvu','=','1')->first();
+    	->where('password',md5($request ->password))->first();
+
     	if($result){
     		Session::put('ten',$result->ten);
     		Session::put('id',$result->id);

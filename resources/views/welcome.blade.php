@@ -64,7 +64,25 @@
     </div>
 
     <!--Start Modal1 -->
+<<<<<<< HEAD
 
+=======
+    <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+        <div class="overlay-modal1 js-hide-modal1"></div>
+       
+        <div class="container">
+            <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
+                <button class="how-pos3 hov3 trans-04 js-hide-modal1">
+                    <img src="{{asset('public/frontend/images/icons/icon-close.png')}}" alt="CLOSE">
+                </button>
+                    <!--Quickview -->
+                    @yield('contents');
+                    
+                <!--Quickview -->
+            </div>
+        </div>
+    </div>
+>>>>>>> 53838edecfab7b534404bcaf8a4eaade39b7e306
     <!--End Modal -->
 
     <!-- Modal1 -->
@@ -170,7 +188,11 @@
         });
     </script>
 <!--===============================================================================================-->
+<<<<<<< HEAD
     <script src="{{asset('public/frontend/js/main.js')}}?time=<?=time();?>"></script>
 
+=======
+    <script src="{{asset('public/frontend/js/main.js')}}"></script>
+>>>>>>> 53838edecfab7b534404bcaf8a4eaade39b7e306
 </body>
 </html>

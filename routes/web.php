@@ -21,6 +21,8 @@ Route::get('/thanhvientrongnhom','HomeController@thanhvientrongnhom');
 Route::get('/trangsanphamgioitinh/{id}','HomeController@sanphamgioitinh');
 
 
+
+
 Route::post('/timkiem','SanphamController@timkiemsanpham');
 Route::get('/ajax','SanphamController@ajaxtimkiem');
 
@@ -59,11 +61,8 @@ Route::get('/edit-loai-san-pham/{id_loaisp}','LoaisanphamController@edit_loaisp'
 Route::post('/update-loai-san-pham/{id_loaisp}','LoaisanphamController@update_loaisp');
 //Hãng 
 Route::get('/danh-sach-hang-san-xuat','HangsxController@dshsx');
-
-
 Route::get('/them-hang-san-xuat','HangsxController@themhsx');
 Route::post('/save-hang-san-xuat','HangsxController@save_hsx');
-
 Route::get('/delete-hang-san-xuat/{id_hang}','HangsxController@delete_hangsx');
 
 
@@ -71,6 +70,7 @@ Route::get('/edit-hang-san-xuat/{id_hang}','HangsxController@edit_hangsx');
 Route::post('/update-hang-san-xuat/{id_hang}','HangsxController@update_hangsx');
 //User
 Route::get('/danh-sach-user','UserController@danhsachuser');
+
 Route::get('/login','UserController@getLogin');
 Route::post('/login/ss','UserController@saveLogin');
 Route::get('/user-logout','UserController@logout');
@@ -88,6 +88,13 @@ Route::get('/callback', 'SocialController@handleProviderCallback');
 // Api login Facebook
 Route::get('/redirect/{provider}', 'SocialController@redirect')->name('redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
+
+Route::get('/login','UserController@getIndex');
+
+Route::get('/sua_admin','UserController@sua_admin');
+
+
+
 
 //Sản phẩm
 Route::get('/danh-sach-san-pham','SanphamController@danhsachsanpham');
@@ -111,10 +118,22 @@ Route::post('/save-cart','CartController@save_cart');
 Route::get('/show_cart','CartController@show_cart');
 Route::get('/delete-to-cart{rowID}','CartController@delete_to_cart');
 Route::post('/update-cart-quantity','CartController@update_cart');
-
-
 // <!----------------------------end-save-cart--------------------------------------!>
+
 
 // checkout
 Route::get('/checkout', 'CartController@checkout_cart');
 Route::post('/saveDB','SaveInvoice@getDataInvoice');
+
+//product
+Route::get('/add-product','ProductController@add_product');
+Route::get('/edit-product/{sanpham_id}','ProductController@edit_product');
+Route::get('/delete-product/{sanpham_id}','ProductController@delete_product');
+Route::get('/all-product','ProductController@all_product');
+Route::post('/save-product','ProductController@save_product');
+Route::post('/update-product/{sanpham_id}','ProductController@update_product');
+//phan quyen
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+

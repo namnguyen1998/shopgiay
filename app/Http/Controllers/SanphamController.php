@@ -42,15 +42,19 @@ class SanphamController extends Controller
                    ->join('loaisanpham','loaisanpham.id','=','sanpham.id_loaisp')
                    ->select('sanpham.sanpham_id','sanpham.hinhsp','sanpham.mota','sanpham.giatien','sanpham.giakm','sanpham.tensanpham','loaisanpham.tenloai','hanggiay.tenhang')
                    ->get();
-    	$qlydssanpham = view('admin.danhsachsanpham')->with('dssanpham',$dssanpham);
+      $dsuser = DB::table('nhanvien')->get();
+    	$qlydssanpham = view('admin.danhsachsanpham')->with('dssanpham',$dssanpham)->with('dsuser',$dsuser);
     	return view('admin')->with('admin.danhsachsanpham',$qlydssanpham);
     }
 
     public function themsanpham(){
     	$this->AuthLogin();
     	$dshang = DB::table('hanggiay')->orderby('id','desc')->get();
-    	$dsloaisp = DB::table('loaisanpham')->orderby('id','desc')->get();
-    	return view('admin.themsanpham')->with('dshang',$dshang)->with('dsloaisp',$dsloaisp);
+      $dsloaisp = DB::table('loaisanpham')->orderby('id','desc')->get();
+      $dsuser = DB::table('nhanvien')->get();
+      $gioitinh = DB::table('gioitinh')->get();
+      return view('admin.themsanpham')->with('dshang',$dshang)->with('dsloaisp',$dsloaisp)
+      ->with('dsuser',$dsuser)->with('gioitinh',$gioitinh);
     }
 
     public function timkiemsanpham(Request $req){
@@ -107,6 +111,8 @@ class SanphamController extends Controller
       
     }
 
+
   } 
+
 
 }

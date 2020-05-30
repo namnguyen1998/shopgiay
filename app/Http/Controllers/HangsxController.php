@@ -50,7 +50,8 @@ class HangsxController extends Controller
     public function dshsx(){
         $this->AuthLogin();
        $dshang = DB::table('hanggiay')->get();
-       return view('admin.danhsachnsx')->with('dshang', $dshang);
+       $dsuser = DB::table('nhanvien')->get();
+       return view('admin.danhsachnsx')->with('dshang', $dshang)->with('dsuser', $dsuser);
     }
 
     public function delete_hangsx($id_hang){
