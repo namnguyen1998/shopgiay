@@ -62,9 +62,8 @@ class UserController extends Controller
     public function getRegister(){
         return view('user.register');
     }
-
     public function saveRegister(Request $request){
-       
+          
         $rules=[
             'email' => 'required',
             'password' => 'required',
@@ -80,13 +79,19 @@ class UserController extends Controller
             'name.required' => 'Vui lòng nhập tên',
 
         ];
-
         $input = $request->all();
 
         $validator = \Validator::make($input, $rules, $message);
 
         if($validator->fails()){
             return redirect::to('/register')->withErrors($validator);
+        }
+
+        $user = DB::table('users')->where('email', $input['email'])->first();
+
+        if($user){
+            Session::put('error','Email đã tồn tại');
+            return Redirect::to('/register');
         }
 
         $param=[
@@ -102,8 +107,9 @@ class UserController extends Controller
     	
             Session::put('message','Đăng ký thành công');
             
-    		return Redirect::to('/register');
-    	
+            return Redirect::to('/register');
+    
+        
     }
     public function logout(){
         $this->AuthLogin();
