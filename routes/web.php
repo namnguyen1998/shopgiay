@@ -87,9 +87,7 @@ Route::get('/callback', 'SocialController@handleProviderCallback');
 
 // Api login Facebook
 Route::get('/redirect/{provider}', 'SocialController@redirect')->name('redirect');
-Route::get('/callback/{provider}', 'SocialController@callback');
-
-Route::get('/login','UserController@getIndex');
+Route::get('/callback/{provider}', 'SocialController@callback');    
 
 Route::get('/sua_admin','UserController@sua_admin');
 
