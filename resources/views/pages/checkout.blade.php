@@ -20,12 +20,17 @@
 						<div class="section_title">Thông tin khách hàng</div>
 						<div class="section_subtitle">Nhập thông tin </div>
 						<div class="checkout_form_container">
+
+						
 							<form action="{{URL::to('/saveInvoice')}}" id="checkout_form" name="frmthongtin" class="checkout_form" method="GET">
-							<!-- {{ csrf_field() }} -->
+							@csrf
                             <div>
 									<!-- Name -->
 									<label for="checkout_zipcode">Họ tên*</label>
 									<input type="text" id="name" name="name" class="checkout_input" required="required">
+									<!-- @if($errors->has('name'))
+									<p style="position:absolute;font-size: 12px;color: red;margin-left:150px;margin-top:-10%;}">{!!$errors->first('name')!!}</p>
+                					@endif -->
 								</div>
 								
 								<div>
@@ -34,6 +39,9 @@
 									<select  name="_checkout_city" id="checkout_city"  class="dropdown_item_select checkout_input" require="required" onChange="F2(this.value)">
 										<option>Chọn Tỉnh/Thành phố</option>
 									</select>
+									<!-- @if($errors->has('city'))
+									<p style="position:absolute;font-size: 12px;color: red;margin-left:150px;margin-top:-10%;}">{!!$errors->first('city')!!}</p>
+                					@endif -->
 								</div>
 								
 								<div>
@@ -43,6 +51,9 @@
 										<option>Chọn Quận/Huyện</option>
 										
 									</select>
+									<!-- @if($errors->has('district'))
+									<p style="position:absolute;font-size: 12px;color: red;margin-left:150px;margin-top:-10%;}">{!!$errors->first('district')!!}</p>
+                					@endif -->
                                 </div>
 
 
@@ -53,11 +64,17 @@
 										<option>Chọn Phường/Xã</option>
 										
 									</select>
+									<!-- @if($errors->has('ward'))
+									<p style="position:absolute;font-size: 12px;color: red;margin-left:150px;margin-top:-10%;}">{!!$errors->first('ward')!!}</p>
+                					@endif -->
                                 </div>
 								<div>
 									<!-- Zipcode -->
 									<label for="checkout_zipcode">Số nhà*</label>
 									<input type="text" id="no" name="no" class="checkout_input" required="required">
+									<!-- @if($errors->has('no'))
+									<p style="position:absolute;font-size: 12px;color: red;margin-left:150px;margin-top:-10%;}">{!!$errors->first('no')!!}</p>
+                					@endif -->
 								</div>
 								
                                 
@@ -65,12 +82,17 @@
 									<!-- Phone no -->
 									<label for="checkout_phone">Số điện thoại*</label>
 									<input type="phone" id="phone" name="phone" class="checkout_input" required="required">
+									<!-- @if($errors->has('phone'))
+									<p style="position:absolute;font-size: 12px;color: red;margin-left:150px;margin-top:-10%;}">{!!$errors->first('phone')!!}</p>
+                					@endif -->
 								</div>
 								<div>
 									<!-- Email -->
 									<label for="checkout_email">Email*</label>
 									<input type="email" id="email" name="email" class="checkout_input" required="required">
-
+									<!-- @if($errors->has('email'))
+									<p style="position:absolute;font-size: 12px;color: red;margin-left:150px;margin-top:-10%;}">{!!$errors->first('email')!!}</p>
+                					@endif -->
                                 </div>
 
                                 <!-- Ship -->
@@ -92,9 +114,13 @@
                                             <input id="phiVanChuyen2" type="radio" checked="checked" name="radio" value="0" onclick="myFunction2()">
                                             <span class="checkmark"></span>
                                             <span class="delivery_price">0₫</span>
-                                        </label>
+										</label>
+										<!-- @if($errors->has('ship'))
+										<p style="position:absolute;font-size: 12px;color: red;margin-left:150px;margin-top:-10%;}">{!!$errors->first('ship')!!}</p>
+										@endif -->
                                     </div>
-                                </div>
+								</div>
+								
 							</form>
 						</div>
 					</div>
@@ -169,7 +195,8 @@
 
 						</div>
 						             
-                        <div id="saveInvoice"  class="button order_button" ><a href="{{URL::to('/saveInvoice')}}" onclick="return confirm('Bạn đã đặt hàng thành công.')">ĐẶT HÀNG</a></div>
+                        <div id="saveInvoice"  class="button order_button" ><a href="{{URL::to('/saveInvoice')}}" onclick="return confirm('Bạn chắc chắn muốn đặt hàng?')">ĐẶT HÀNG</a></div>
+
 
 					</div>
 				</div>
@@ -230,8 +257,8 @@
 				GetCity= JSON.parse(GetCity);
 				listItem = GetCity.LtsItem;
 				$.each(listItem, function(key, value){
-					tam= "<option value='" + value.ID + "'>" + value.Title + "</option>";
-					$("#checkout_city").append(tam);
+					City= "<option value='" + value.ID + "'>" + value.Title + "</option>";
+					$("#checkout_city").append(City);
 
 				});
 			}
@@ -239,18 +266,18 @@
 		})
 	})
 	
-	function F2(checkout_country){
+	function F2(checkout_district){
 		$("#checkout_district").html('');
 		$.ajax({
-		url:'app/Http/Controllers/GetDistrict.php?ID='+checkout_country,
+		url:'app/Http/Controllers/GetDistrict.php?ID='+checkout_district,
 		type:'json',
 		success:function(GetDistrict)
 		{
 			
 			GetDistrict	= JSON.parse(GetDistrict);
 			$.each(GetDistrict, function(key,value){
-				tam= "<option value='" + value.ID + "'>" + value.Title + "</option>";
-				$("#checkout_district").append(tam);
+				District= "<option value='" + value.ID + "'>" + value.Title + "</option>";
+				$("#checkout_district").append(District);
 				
 			});
 		}
@@ -266,8 +293,8 @@
 		{
 			GetWard= JSON.parse(GetWard);
 			$.each(GetWard, function(key, value){
-				tam= "<option value='" + value.ID + "'>" + value.Title + "</option>";
-				$("#checkout_word").append(tam);
+				Ward= "<option value='" + value.ID + "'>" + value.Title + "</option>";
+				$("#checkout_word").append(Ward);
 				
 			});
 		}

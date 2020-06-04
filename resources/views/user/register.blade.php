@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login and Registration</title>
-    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/login.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/login1.css')}}">
 </head>
 <body>
     <div class="hero">
@@ -25,23 +25,30 @@
                                 echo '<div style="margin-left: 44px;color: green;font-weight: bold;font-size: 15px;">'.$message.'</div>';
                                 Session::put('message',null);
                             }
+
+                            $error = Session::get('error'); 
+                            if($error){
+                                echo '<div style="margin-left: 44px;color: red;font-weight: bold;font-size: 15px;">'.$error.'</div>';
+                                Session::put('error',null);
+                            }
+    
                         ?>
     		<form id="login" class="input-group" action="{{URL::to('/register/ss')}}" method="post">@csrf
             <input type="email" name="email" id="email" class="input-field" placeholder="Nhập Email" >
                 @if($errors->has('email'))
-				<p style="font-size: 12px;color: red;}">{!!$errors->first('email')!!}</p>
+				<p style="position:absolute;font-size: 12px;color: red;margin-left:150px;margin-top:-10%;}">{!!$errors->first('email')!!}</p>
                 @endif
     			<input type="password"  name="password" id="password" class="input-field" placeholder="Nhập Mật Khẩu" >
                 @if($errors->has('password'))
-				<p style="font-size: 12px;color: red;}">{!!$errors->first('password')!!}</p>
+				<p style="position:absolute;font-size: 12px;color: red;margin-left:150px;margin-top:-10%;}">{!!$errors->first('password')!!}</p>
                 @endif
 				<input type="password"  name="password_confirmation" id="password_confirmation" class="input-field" placeholder="Nhập Lại Mật Khẩu" >
                 @if($errors->has('password_confirmation'))
-				<p style="font-size: 12px;color: red;}">{!!$errors->first('password_confirmation')!!}</p>
+				<p style="position:absolute;font-size: 12px;color: red;margin-left:120px;margin-top:-10%;}">{!!$errors->first('password_confirmation')!!}</p>
                 @endif
                 <input type="text" name="name" id="name" class="input-field" placeholder="Nhập Tên Người Dùng" >
     			@if($errors->has('name'))
-				<p style="font-size: 12px;color: red;}">{!!$errors->first('name')!!}</p>
+				<p style="position:absolute;font-size: 12px;color: red;margin-left:150px;margin-top:-10%;}">{!!$errors->first('name')!!}</p>
                 @endif
                 <input type="checkbox" checked="checked" class="chech-box"><span>Tôi đồng ý với điều khoản</span>
     			

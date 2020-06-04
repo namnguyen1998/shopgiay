@@ -20,8 +20,9 @@ class HangsxController extends Controller
     }
     public function themhsx(){
         $this->AuthLogin();
+        $dsuser = DB::table('nhanvien')->get();
     	$dsloaisp = DB::table('loaisanpham')->orderby('id','desc')->get();
-    	return view('admin.themhsx')->with('dsloaisp',$dsloaisp);
+    	return view('admin.themhsx')->with('dsloaisp',$dsloaisp)->with('dsuser', $dsuser);
     }
     public function save_hsx(Request $request){
         $this->AuthLogin();
@@ -50,7 +51,8 @@ class HangsxController extends Controller
     public function dshsx(){
         $this->AuthLogin();
        $dshang = DB::table('hanggiay')->get();
-       return view('admin.danhsachnsx')->with('dshang', $dshang);
+       $dsuser = DB::table('nhanvien')->get();
+       return view('admin.danhsachnsx')->with('dshang', $dshang)->with('dsuser', $dsuser);
     }
 
     public function delete_hangsx($id_hang){

@@ -28,6 +28,7 @@ class CartController extends Controller
         $data['qty']=$quantity;
         $data['name']=$product_info[0]->tensanpham;
         $data['price']=$product_info[0]->giatien;
+        $data['description']=$product_info[0]->mota;
         $data['weight']='123';
         $data['options']['image']=$product_info[0]->hinhsp;
         Cart::add($data);
@@ -41,7 +42,12 @@ class CartController extends Controller
     }
 
     public function show_cart(){
-        return view('pages.cart.show_cart');
+        if(Cart::count()!=null){
+            Cart::count();
+            return view('pages.cart.show_cart');
+        }
+        return view('pages.cart_null');
+        
     }
 
     public function delete_to_cart($rowID){
@@ -53,6 +59,7 @@ class CartController extends Controller
         $rowID=$request->rowID_cart;
         $qty=$request->num_product1;
         Cart::update($rowID,$qty);
+        echo $qty;
         return Redirect::to('/show_cart');
 
     }
@@ -63,6 +70,7 @@ class CartController extends Controller
             return view('pages.checkout');
         }
         return view('pages.cart_null');
+        // return view('pages.404');
     }
 
 }

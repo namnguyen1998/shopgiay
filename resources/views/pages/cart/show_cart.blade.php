@@ -31,7 +31,7 @@
 							<table class="table-shopping-cart">
 								<tr class="table_head">
 									<th class="column-1">Hình ảnh</th>
-									<th class="column-2">Mô tả</th>
+									<th class="column-2">Tên sản phẩm</th>
 									<th class="column-3">Giá tiền</th>
 									<th class="column-4">Số lượng</th>
 									<th class="column-5">Tổng</th>
@@ -47,13 +47,14 @@
 									<td class="column-2">{{$v->name}}</td>
 									<td class="column-3">{{number_format($v->price, 0, ',', '.') . "₫"}}</td>
 									<td class="column-4">
+										 
 										<form action="{{URL::to('/update-cart-quantity')}}" method="post">
-											@csrf
+										@csrf
 										<div class="wrap-num-product flex-w m-l-auto m-r-0">
-											<input type="submit" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" name="update_qty">
+											<input id="submit" type="submit" value="Gửi" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" name="update_qty">
 												
-											<input type="hidden" name="rowID_cart" value="{{($v->rowId)}}">
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num_product1" value="{{$v->qty}}">
+											<input id="rowID_cart" type="hidden" name="rowID_cart" value="{{($v->rowId)}}">
+											<input id="num_product1" class="mtext-104 cl3 txt-center num-product" type="number" name="num_product1" value="{{$v->qty}}">
 
 											
 											
@@ -64,7 +65,7 @@
 										</div>
 										</form>
 									</td>
-									<td class="column-5">
+									<td id="total" class="column-5">
 										<?php
 											$tong=$v->price*$v->qty;
 											echo number_format($tong, 0, ',', '.') . "₫";
@@ -100,9 +101,10 @@
 							</div>
 						</div>
 
-						
+							
 						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"><a style="color:white;" href="{{URL::to('/checkout')}}">
 							Tiến hành đặt hàng
+
 							</a>
 						</button>
 					</div>
@@ -110,6 +112,34 @@
 			</div>
 		</div>
 	</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/jquery-3.5.0.min.js')}}">
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
+<!-- <script>
+	$(document).ready(function(){
+		$("#submit").click(function(){
+		
+			subtotal = document.getElementById("rowID_cart").value;
+			city = document.getElementById("num_product1").value;
+			console.log(subtotal)
+			console.log(city)
 
+			// Ship
+			$.ajax({
+				url: '{{URL::to('/update-cart-quantity')}}',
+				method: 'get',
+				data:{
+						'subtotal':subtotal,
+						'city': city,
+
+					}
+            	}).done(function(don_hang){
+                    console.log(don_hang);
+                    
+            	})
+				
+		})
+	})
+</script> -->
 
 @endsection
