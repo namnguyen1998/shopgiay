@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Session;
 use Socialite;
 use App\User;
+session_start();
+
 class SocialController extends Controller
 {
     public function redirect($provider)
@@ -41,7 +43,8 @@ class SocialController extends Controller
 
         // only allow people with @company.com to login
         if(explode("@", $user->email)[1] !== 'gmail.com'){
-            return redirect()->to('/home');
+            Session::put('name',$user->name);
+            return redirect()->to('/');
         }
 
         // check if they're an existing user
@@ -61,6 +64,7 @@ class SocialController extends Controller
             $newUser->save();
             auth()->login($newUser, true);
         }
+        Session::put('name',$user->name);
         return redirect()->to('/');
     }
 
@@ -69,6 +73,7 @@ class SocialController extends Controller
         $getInfo = Socialite::driver($provider)->user(); 
         $user = $this->createUser($getInfo); 
         auth()->login($user); 
+        Session::put('name',$user->name);
         return redirect()->to('/');
     }
 
