@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 use DB;
 use Sentinel;
 use Reminder;
@@ -20,6 +21,19 @@ class UserController extends Controller
             return Redirect::to('/');
         }else{
             return Redirect::to('login')->send();
+        }
+    }
+    public function check(Request $request)
+    {
+        $data = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        if (Auth::attempt($data)) {
+            //true
+        } else {
+            //false
         }
     }
     public function getLogin(){
@@ -45,6 +59,8 @@ class UserController extends Controller
 
         if($validator->fails()){
             return redirect::to('/login')->withErrors($validator);
+                                       
+        
         }
        
     	$result = DB::table('users')->where('email',$input['email'])
@@ -54,8 +70,8 @@ class UserController extends Controller
     		Session::put('id',$result->id);
     		return Redirect::to('/');
     	}else{
-    		Session::put('message','Tài khoản hoặc mật khẩu không đúng');
-    		return Redirect::to('/login');
+    		Session::put('message','Email không có trong hệ thống');
+    		return Redirect::to('/login')->withInput($input);
     	}
     }
 
