@@ -91,7 +91,7 @@ class HangsxController extends Controller
             return Redirect::to('/danh-sach-hang-san-xuat');
         }
 
-        $data['hinh'] = '';
+        
         DB::table('hanggiay')->where('id',$id_hang)->update($data);
         Session::put('message','Cập nhật thành công');
         return Redirect::to('/danh-sach-hang-san-xuat');

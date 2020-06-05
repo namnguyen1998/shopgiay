@@ -13,7 +13,7 @@
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
-						<ul class="main-menu1" style="color:black;">
+						<ul class="main-menu1">
 							<li>
 								<a href="{{URL::to('/')}}">Home</a>
 							</li>

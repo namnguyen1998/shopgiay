@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thành viên trong nhóm</title>
-    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/main.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/freestyle.css')}}">
 </head>
 <body>
 	<div class="filter">
