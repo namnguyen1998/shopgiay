@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-12 col-md-9">
                     <input type="file" id="file-input" name="hinh" class="form-control-file">
-                    <img src="public/frontend/images/{{$hsx->hinh}}" height="200" width="200">
+                    <img src="{{URL::to('public/frontend/images/'.$hsx->hinh)}}" height="200" width="200">
                 </div>
             </div>
             <div class="row form-group">

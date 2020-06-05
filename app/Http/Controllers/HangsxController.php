@@ -80,14 +80,14 @@ class HangsxController extends Controller
             $new_image =  $name_image.'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/frontend/images/',$new_image);
             $data['hinh'] = $new_image;
-            DB::table('hanggiay')->update($data);
+            DB::table('hanggiay')->where('id',$id_hang)->update($data);
             Session::put('message','Cập nhật thành công');
             return Redirect::to('danh-sach-hang-san-xuat');
         }
 
         $data['hinh'] = '';
 
-        DB::table('hanggiay')->where('id',$id_hang)->update($data);
+        DB::table('hanggiay')->update($data);
         Session::put('message','Cập nhật thành công');
         return Redirect::to('danh-sach-hang-san-xuat');
     }
