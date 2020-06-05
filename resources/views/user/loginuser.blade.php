@@ -27,13 +27,14 @@
                                 echo '<div style="margin-left: 44px;color: red;font-weight: bold;font-size: 15px;">'.$message.'</div>';
                                 Session::put('message',null);
                             }
+
                         ?>
     		<form id="login" class="input-group" action="{{URL::to('/login/ss')}}" method="post">@csrf
-    			<input type="text" class="input-field" name="email" placeholder="Nhập email" >
+    			<input type="text" class="input-field"   name="email"   placeholder="Nhập email" value="{{old('email')}}" required autofocus >
 				@if($errors->has('email'))
 				<p style="font-size: 12px;color: red;}">{!!$errors->first('email')!!}</p>
                 @endif
-    			<input type="password" class="input-field" name="password" placeholder="Nhập Mật Khẩu" >
+    			<input type="password" class="input-field" name="password" placeholder="Nhập Mật Khẩu" value="{{old('password')}}" required autofocus >
 				@if($errors->has('password'))
 				<p style="font-size: 12px;color: red;}">{!!$errors->first('password')!!}</p>
                 @endif
