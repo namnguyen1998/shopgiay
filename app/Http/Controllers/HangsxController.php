@@ -52,7 +52,13 @@ class HangsxController extends Controller
         $this->AuthLogin();
        $dshang = DB::table('hanggiay')->get();
        $dsuser = DB::table('nhanvien')->get();
-       return view('admin.danhsachnsx')->with('dshang', $dshang)->with('dsuser', $dsuser);
+        $data;
+       foreach($dshang as $hang){
+           $data["$hang->id"] = DB::table('sanpham')->where('id_hanggiay',$hang->id
+       )->count();
+           //DB::table('sanpham')->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')->where('sanpham.id_hanggiay','=',$hang->id)->count();
+       } 
+       return view('admin.danhsachnsx')->with('dshang', $dshang)->with('dsuser', $dsuser)->with('data', $data);
     }
 
     public function delete_hangsx($id_hang){
