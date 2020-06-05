@@ -10,79 +10,102 @@ use Illuminate\Support\Facades\Redirect;
 use DB,Cart;
 session_start();
 
-    // $subtotal = $_POST['subtotal'];
-    // $city = $_POST['city'];
-    // $district = $_POST['district'];
-    // $word = $_POST['word'];
-    
-    // $urlCity = "https://thongtindoanhnghiep.co/api/city/$city";
-    // $urlDistrict = "https://thongtindoanhnghiep.co/api/district/$district";
-    // $urlWard = "https://thongtindoanhnghiep.co/api/ward/$word";
-
-    // $getDataUrlCity = @file_get_contents($urlCity);
-    // $convertDataCity = json_decode($getDataUrlCity);
-    // $getCity = $convertDataCity->Title;
-
-    // $getDataUrlDistrict = @file_get_contents($urlDistrict);
-    // $convertDataDistrict = json_decode($getDataUrlDistrict);
-    // $getDistrict = $convertDataDistrict->Title;
-
-    // $getDataUrlWard = @file_get_contents($urlWard);
-    // $convertDataWard = json_decode($getDataUrlWard);
-    // $getWard = $convertDataWard->Title;
-
 
 class SaveInvoice extends Controller
 {
     public function getDataInvoice(Request $request){
+        // $getIdOrders = DB::table('donhang')->select('id_donhang')->orderby('id_donhang','desc')->limit(1)->get();
+        // foreach($getIdOrders as $key => $value)
+        //     $idOrders = $value->id_donhang + 1;
 
-        $date = new DateTime();
-        $subtotal = $_POST['subtotal'];
-        $city = $_POST['city'];
-        $district = $_POST['district'];
-        $word = $_POST['word'];
+        // $name = $request->name;
+        // $phone = $request->phone;
+        // $email = $request->email;
+        // $no = $request->no;
+
+        // $subtotal = $request->subtotal;
+        // $city = $request->city;
+        // $district = $request->input('district');
+        // $ward = $request->input('ward');
+        // $urlCity = "https://thongtindoanhnghiep.co/api/city/$city";
+        // $urlDistrict = "https://thongtindoanhnghiep.co/api/district/$district";
+        // $urlWard = "https://thongtindoanhnghiep.co/api/ward/$ward";
+
+        // $getDataUrlCity = @file_get_contents($urlCity);
+        // $convertDataCity = json_decode($getDataUrlCity);
+        // $getCity = $convertDataCity->Title;
+
+        // $getDataUrlDistrict = @file_get_contents($urlDistrict);
+        // $convertDataDistrict = json_decode($getDataUrlDistrict);
+        // $getDistrict = $convertDataDistrict->Title;
+
+        // $getDataUrlWard = @file_get_contents($urlWard);
+        // $convertDataWard = json_decode($getDataUrlWard);
+        // $getWard = $convertDataWard->Title;
+
+        // $data = array();
+        // $data['subtotal'] = $subtotal;
+        // $data['city'] = $getCity;
+        // $data['district'] = $getDistrict;
+        // $data['ward'] = $getWard;
+        // $address = $no . ", " . $data['ward'] . ", " . $data['district'] . ", " .  $data['city'];
         
-        $urlCity = "https://thongtindoanhnghiep.co/api/city/$city";
-        $urlDistrict = "https://thongtindoanhnghiep.co/api/district/$district";
-        $urlWard = "https://thongtindoanhnghiep.co/api/ward/$word";
+        // foreach(Cart::content() as $cart){
+        //     $dataCart = array();
+        //     $dataCart['id_sanpham'] = $cart->id;
+        //     $dataCart['soluong'] = $cart->qty;
+        //     $dataCart['tongtien'] = $data['subtotal'];
+        //     $dataCart['tennguoinhan'] = $name;
+        //     $dataCart['sdt'] = $phone;
+        //     $dataCart['diachi'] = $address;
+        //     $dataCart['id_pttt'] = '1';
+        //     $dataCart['id_donhang'] = $idOrders;
+        //     DB::table('chitietdonhang')->insert($dataCart);
+        // }
 
-        $getDataUrlCity = @file_get_contents($urlCity);
-        $convertDataCity = json_decode($getDataUrlCity);
-        $getCity = $convertDataCity->Title;
+        // $dataOrders = array();
+        // $dataOrders['ghichu'] = '';
+        // $dataOrders['id_trangthai'] = '1';
+        // $dataOrders['tongtien'] = $data['subtotal'];
+        // DB::table('donhang')->insert($dataOrders);
+        
 
-        $getDataUrlDistrict = @file_get_contents($urlDistrict);
-        $convertDataDistrict = json_decode($getDataUrlDistrict);
-        $getDistrict = $convertDataDistrict->Title;
+        // check null
+        // $rules=[
+        //     'name' => 'required',
+        //     'city' => 'required',
+        //     'district' => 'required',
+        //     'ward' => 'required',
+        //     'no' => 'required',
+        //     'phone' => 'required',
+        //     'email' => 'required',
+        //     'ship' => 'required',
+        //     'pay' => 'required',
+        // ];
 
-        $getDataUrlWard = @file_get_contents($urlWard);
-        $convertDataWard = json_decode($getDataUrlWard);
-        $getWard = $convertDataWard->Title;
+        // $message = [
+        //     'name.required' => 'Bạn chưa nhập Họ tên',
+        //     'city.required' => 'Bạn chưa chọn Tỉnh/Thành phố',
+        //     'district.required' => 'Bạn chưa chọn Quận/Huyện',
+        //     'ward.required' => 'Bạn chưa chọn Phường/Xã',
+        //     'no.required' => 'Bạn chưa nhập Số nhà',
+        //     'phone.required' => 'Bạn chưa nhập Số diện thoại',
+        //     'email.required' => 'Bạn chưa nhập Email',
+        //     'ship.required' => 'Bạn chưa chọn Hình thức vận chuyển',
+        //     'pay.required' => 'Bạn chưa chọn Hình thức thanh toán',
+        // ];
 
-    //////////////////////////////////////////////////////////////
-        $_name = $request->input('_name');
-        $_no = $request->input('_no');
-        $address = $_no . ", " . $getWard . ", " . $getDistrict . ", " . $getCity ;
-        $_phone = $request->input('_phone');
-        $_email = $request->input('_email');
+        // $input = $request->all();
 
-        $cart = Cart::content();
-        $idProduct = $cart->id;
+        // $validator = \Validator::make($input, $rules, $message);
 
-        // $data=array('id_sanpham'=>$idProduct, 'soluong'=>2 ,'tennguoinhan'=>$_name,"sdt"=>$_phone,"diachi"=>$address,"email"=>$_email);
+        // if($validator->fails()){
+        //     return redirect::to('/checkout')->withErrors($validator);
+        // }
+        
+        Cart::destroy();
+        return view('pages.thanks');
 
-        $data = array();
-        $data['id_sanpham'] = $idProduct;
-        $data['soluong'] = '2';
-        $data['tongtien'] = $subtotal;
-        $data['tennguoinhan'] = $_name;
-        $data['sdt'] = $_phone;
-        $data['diachi'] = $address;
-        $data['email'] = $_email;
-        $data['ngaydat'] = $date->getTimestamp();
-        $data['id_pttt'] = '1';
-
-        DB::table('chitietdonhang')->insert($data);
-
-        return Redirect::to('/checkout');
     }
+
 }

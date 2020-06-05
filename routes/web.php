@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 //Shop Frontend
 Route::get('/', 'HomeController@index');
 Route::get('/trangsanpham','HomeController@trangsanpham');
@@ -87,9 +89,7 @@ Route::get('/callback', 'SocialController@handleProviderCallback');
 
 // Api login Facebook
 Route::get('/redirect/{provider}', 'SocialController@redirect')->name('redirect');
-Route::get('/callback/{provider}', 'SocialController@callback');
-
-Route::get('/login','UserController@getIndex');
+Route::get('/callback/{provider}', 'SocialController@callback');    
 
 Route::get('/sua_admin','UserController@sua_admin');
 
@@ -113,6 +113,7 @@ Route::get('/phieu-nhap','TonkhoController@phieunhap');
 Route::get('/report','TonkhoController@report');
 Route::get('/trang-thai-don-hang', 'DonhangController@trangthaidonhang');
 
+
 // <!-------------------------start-save-cart---------------------------------------!>
 Route::post('/save-cart','CartController@save_cart');
 Route::get('/show_cart','CartController@show_cart');
@@ -123,7 +124,7 @@ Route::post('/update-cart-quantity','CartController@update_cart');
 
 // checkout
 Route::get('/checkout', 'CartController@checkout_cart');
-Route::post('/saveDB','SaveInvoice@getDataInvoice');
+Route::get('/saveInvoice','SaveInvoice@getDataInvoice');
 
 //product
 Route::get('/add-product','ProductController@add_product');
@@ -134,6 +135,9 @@ Route::post('/save-product','ProductController@save_product');
 Route::post('/update-product/{sanpham_id}','ProductController@update_product');
 //phan quyen
 
-
 Route::get('/home', 'HomeController@index')->name('home');
 
+// check pages 404
+Route::any('/{page?}',function(){
+	return View::make('pages.404');
+})->where('page','.*');

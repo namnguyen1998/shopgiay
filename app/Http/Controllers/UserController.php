@@ -118,6 +118,7 @@ class UserController extends Controller
         return Redirect::to('./');
     }
 
+    // Admin
     public function danhsachuser(){
     	$this->AuthLogin();
     	$dsuser = DB::table('chucvu')->join('nhanvien','nhanvien.id_chucvu','=','chucvu.id')->get();
@@ -125,7 +126,8 @@ class UserController extends Controller
     	return view('admin')->with('admin.danhsachuser',$qlydsuser);
 
     }
-
+    // Amin
+    
     public function forgotPassword()
     {
     	return view('user/forgot');

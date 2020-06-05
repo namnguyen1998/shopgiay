@@ -69,7 +69,7 @@
 									<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
 											<select class="js-select2" name="time">
-												<option>Choose an option</option>
+												<option>Chọn size</option>
 												@foreach($si as $s)
 			
 												<option>{{$s->size}}</option>
@@ -99,7 +99,7 @@
 										</div>
 
 										<button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
+											Thêm vào giỏ hàng
 										</button>
 									</div>
 								</div>	
