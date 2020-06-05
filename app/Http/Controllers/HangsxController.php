@@ -29,7 +29,7 @@ class HangsxController extends Controller
     	$data = array();
     	$data['tenhang'] = $request->tenhang;
         $data['trangthai'] = $request->trangthai;
-    	$get_image = $request->file('hinh   ');
+    	$get_image = $request->file('hinh');
       
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
@@ -39,7 +39,7 @@ class HangsxController extends Controller
             $data['hinh'] = $new_image;
             DB::table('hanggiay')->insert($data);
             Session::put('message','Thêm hãng thành công');
-            return Redirect::to('danh-sach-hang-san-xuat');
+            return Redirect::to('/danh-sach-hang-san-xuat');
         }
 
         $data['hinh'] = '';
@@ -52,7 +52,6 @@ class HangsxController extends Controller
         $this->AuthLogin();
        $dshang = DB::table('hanggiay')->get();
        $dsuser = DB::table('nhanvien')->get();
-        $data;
        foreach($dshang as $hang){
            $data["$hang->id"] = DB::table('sanpham')->where('id_hanggiay',$hang->id
        )->count();
@@ -71,15 +70,16 @@ class HangsxController extends Controller
     public function edit_hangsx($id_hang){
         $this->AuthLogin();
         $id_hang = DB::table('hanggiay')->where('id',$id_hang)->get();
+        // print_r($id_hang);
         $quanlyhangsx = view('admin.edithsx')->with('id_hang',$id_hang);
         return view('admin')->with('admin.edithsx',$quanlyhangsx);
     }
     public function update_hangsx(Request $request,$id_hang){
+        
         $data = array();
         $data['tenhang'] = $request->tenhang;
         $data['trangthai'] = $request->trangthai;
         $get_image = $request->file('hinh');
-      
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.',$get_name_image));
@@ -88,13 +88,12 @@ class HangsxController extends Controller
             $data['hinh'] = $new_image;
             DB::table('hanggiay')->where('id',$id_hang)->update($data);
             Session::put('message','Cập nhật thành công');
-            return Redirect::to('danh-sach-hang-san-xuat');
+            return Redirect::to('/danh-sach-hang-san-xuat');
         }
 
         $data['hinh'] = '';
-
-        DB::table('hanggiay')->update($data);
+        DB::table('hanggiay')->where('id',$id_hang)->update($data);
         Session::put('message','Cập nhật thành công');
-        return Redirect::to('danh-sach-hang-san-xuat');
+        return Redirect::to('/danh-sach-hang-san-xuat');
     }
 }

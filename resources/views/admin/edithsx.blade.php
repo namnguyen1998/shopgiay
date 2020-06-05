@@ -8,7 +8,7 @@
     @foreach($id_hang as $hsx)
     <div class="card-body card-block" style="padding-left: 200px">
         <form action="{{URL::to('/update-hang-san-xuat/'.$hsx->id)}}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        {{csrf_field()}}
+            @csrf
             <div class="row form-group">
                 <div class="col col-md-3">
                     <label for="text-input" class=" form-control-label">Tên hãng sản xuất</label>

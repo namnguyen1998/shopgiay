@@ -57,15 +57,20 @@ Route::get('/delete-loai-san-pham/{id_loaisp}','LoaisanphamController@delete_loa
 
 Route::get('/edit-loai-san-pham/{id_loaisp}','LoaisanphamController@edit_loaisp');
 Route::post('/update-loai-san-pham/{id_loaisp}','LoaisanphamController@update_loaisp');
+
+
+
+
 //Hãng 
 Route::get('/danh-sach-hang-san-xuat','HangsxController@dshsx');
 Route::get('/them-hang-san-xuat','HangsxController@themhsx');
 Route::post('/save-hang-san-xuat','HangsxController@save_hsx');
 Route::get('/delete-hang-san-xuat/{id_hang}','HangsxController@delete_hangsx');
-
-
 Route::get('/edit-hang-san-xuat/{id_hang}','HangsxController@edit_hangsx');
 Route::post('/update-hang-san-xuat/{id_hang}','HangsxController@update_hangsx');
+
+
+
 //User
 Route::get('/danh-sach-user','UserController@danhsachuser');
 

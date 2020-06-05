@@ -12,13 +12,6 @@
     <div class="col-md-12">
         <!-- DATA TABLE -->
         <h3 class="title-5 m-b-35" style="text-align: center">DANH SÁCH HÃNG SẢN XUẤT</h3>
-        <?php
-        $message = Session::get('message');
-        if($message){
-            echo'<span class = "text-alert ">'.$message.'</span>';
-            Session::put('message',null);
-        }
-        ?>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
                 <div class="rs-select2--light rs-select2--md">
