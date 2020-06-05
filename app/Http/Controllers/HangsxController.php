@@ -52,7 +52,13 @@ class HangsxController extends Controller
         $this->AuthLogin();
        $dshang = DB::table('hanggiay')->get();
        $dsuser = DB::table('nhanvien')->get();
-       return view('admin.danhsachnsx')->with('dshang', $dshang)->with('dsuser', $dsuser);
+        $data;
+       foreach($dshang as $hang){
+           $data["$hang->id"] = DB::table('sanpham')->where('id_hanggiay',$hang->id
+       )->count();
+           //DB::table('sanpham')->join('hanggiay','hanggiay.id','=','sanpham.id_hanggiay')->where('sanpham.id_hanggiay','=',$hang->id)->count();
+       } 
+       return view('admin.danhsachnsx')->with('dshang', $dshang)->with('dsuser', $dsuser)->with('data', $data);
     }
 
     public function delete_hangsx($id_hang){
@@ -80,14 +86,14 @@ class HangsxController extends Controller
             $new_image =  $name_image.'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/frontend/images/',$new_image);
             $data['hinh'] = $new_image;
-            DB::table('hanggiay')->update($data);
+            DB::table('hanggiay')->where('id',$id_hang)->update($data);
             Session::put('message','Cập nhật thành công');
             return Redirect::to('danh-sach-hang-san-xuat');
         }
 
         $data['hinh'] = '';
 
-        DB::table('hanggiay')->where('id',$id_hang)->update($data);
+        DB::table('hanggiay')->update($data);
         Session::put('message','Cập nhật thành công');
         return Redirect::to('danh-sach-hang-san-xuat');
     }

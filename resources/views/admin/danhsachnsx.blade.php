@@ -62,11 +62,7 @@
                     }
                 }
             }
-                ?>
-
-
-
-              
+                ?>              
                 <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                     <select class="js-select2" name="type">
                         <option selected="selected">Export</option>
@@ -90,6 +86,7 @@
                         <th>ID</th>
                         <th>Tên hãng</th>
                         <th>Logo</th>
+                        <th>Số lượng</th>
                         <th>Trạng thái</th>
                     </tr>
                 </thead>
@@ -106,7 +103,8 @@
                         <td>
                             {{$hsx->tenhang}}
                         </td>
-                         <td><img src="public/frontend/images/{{$hsx->hinh}}" height="100" width="100"></td>
+                        <td><img src="public/frontend/images/{{$hsx->hinh}}" height="100" width="100"></td>
+                        <td>{{$data["$hsx->id"]}}</td>
                         <td>
               <?php
                if($hsx->trangthai==1){
