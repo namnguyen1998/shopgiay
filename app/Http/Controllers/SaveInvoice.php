@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Redirect;
 use DB,Cart;
 session_start();
 
-
 class SaveInvoice extends Controller
 {
     public function getDataInvoice(Request $request){
