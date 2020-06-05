@@ -22,16 +22,20 @@ use Maatwebsite\Excel\Concerns\WithCustomStartCell;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use Maatwebsite\Excel\Events\AfterSheet;
+use Maatwebsite\Excel\Concerns\RegistersEventListeners;
+use Maatwebsite\Excel\Sheet;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class ExportExport implements FromCollection, WithHeadings, WithMapping, WithCustomStartCell
+
+class ExportExport implements FromCollection, WithHeadings, WithMapping, WithCustomStartCell, WithEvents
 {
-
+    use RegistersEventListeners;
      public function startCell(): string
     {
         return 'A2';
     }
-
-
     
     public function headings(): array
     {
@@ -46,6 +50,59 @@ class ExportExport implements FromCollection, WithHeadings, WithMapping, WithCus
         ];
     }
 
+    public function registerEvents(): array
+    {
+        $normal_style = array('font' => array('name' => 'Times New Roman','size' => 15));
+        $styleArray = [
+            'font' => [
+                'bold' => true,
+                'name' => 'Times New Roman',
+                'size' => 15
+            ],
+            'alignment' => [
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
+            ],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+
+            ],
+            'fill' => [
+                'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_GRADIENT_LINEAR,
+                'rotation' => 90,
+                'startColor' => [
+                    'argb' => 'FFA0A0A0',
+                ],
+                'endColor' => [
+                    'argb' => 'FFA0A0A0',
+                ],
+            ],
+        ];
+
+        
+        return [
+            AfterSheet::class => function(AfterSheet $event) use($styleArray) {
+                // $event->sheet->getStyle("A:G")->getAlignment()->setWrapText(true);
+                // $event->sheet->getStyle("A:G")->applyFromArray($normal_style);
+                $to = $event->sheet->getDelegate()->getHighestColumn();
+                $event->sheet->getDelegate()->getStyle('A2:'.$to.'2')->applyFromArray($styleArray);
+                $event->sheet->getDelegate()->freezePane('A3');
+                $event->sheet->getDelegate()->getStyle('B3:H4')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+                $event->sheet->getColumnDimension('A')->setAutoSize(true);
+                $event->sheet->getColumnDimension('B')->setAutoSize(true);
+                $event->sheet->getColumnDimension('C')->setAutoSize(true);
+                $event->sheet->getColumnDimension('D')->setAutoSize(false);
+                $event->sheet->getColumnDimension('E')->setAutoSize(true);
+                $event->sheet->getColumnDimension('F')->setAutoSize(false);
+                $event->sheet->getColumnDimension('G')->setAutoSize(true);
+                $event->sheet->getColumnDimension('H')->setAutoSize(true);
+                
+
+            },
+        ];
+    }
+
     public function collection()
     {
         return Tonkho::select('tensanpham', 'tongsp', 'ngay_nhap', 'sl_nhap', 'ngay_xuat', 'sl_xuat')
@@ -53,22 +110,7 @@ class ExportExport implements FromCollection, WithHeadings, WithMapping, WithCus
                                 ->get();
     }
     
-    // public function map($customer): array
-    // {
-    //     return [
-    //         $customer->id,
-    //         '=B2+C2',
-    //         $customer->first_name,
-    //         $customer->last_name,
-    //         $customer->email,
-    //     ];
-    // }
-    // public function columnFormats(): array
-    // {
-    //     return [
-    //         'D' => NumberFormat::FORMAT_DATE_DDMMYYYY
-    //     ];
-    // }
+    
 
     public function map($tonkho): array
     {
