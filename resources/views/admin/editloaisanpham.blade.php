@@ -8,7 +8,7 @@
     </div>
     <div class="card-body card-block">
         <form action="{{URL::to('/update-loai-san-pham/'.$lsp->id)}}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                            {{csrf_field()}}
+                @csrf;
             <div class="row form-group">
                 <div class="col col-md-3">
                     <label for="text-input" class=" form-control-label">Mã loại sản phẩm</label>
@@ -22,7 +22,7 @@
                     <label for="text-input" class=" form-control-label">Tên loại sản phẩm</label>
                 </div>
                 <div class="col-12 col-md-9">
-                    <input type="text" id="text-input" value ="{{$lsp->tenloai}}" name="ten_loai" style="width: 300px" placeholder="Nhập tên loại sản phẩm" class="form-control">
+                    <input type="text" id="text-input" value ="{{$lsp->tenloai}}" name="tenloai" style="width: 300px" placeholder="Nhập tên loại sản phẩm" class="form-control">
                 </div>
             </div>
     <div class="card-footer" style="text-align: center">

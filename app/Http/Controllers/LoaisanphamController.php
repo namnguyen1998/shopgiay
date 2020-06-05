@@ -36,10 +36,6 @@ class LoaisanphamController extends Controller
         $this->AuthLogin();
     	$data = array();
     	$data['tenloai'] = $request->tenloai;
-
-    	// echo '<pre>';
-    	// print_r($data);
-    	// echo '</pre>';
     	DB::table('loaisanpham')->insert($data);
     	Session::put('message','Thêm danh mục thành công');
     	return Redirect::to('danh-sach-loai-san-pham');
@@ -56,6 +52,7 @@ class LoaisanphamController extends Controller
         $this->AuthLogin();
         $id_loaisp = DB::table('loaisanpham')->where('id',$id_loaisp)->get();
         $quanlydslsp = view('admin.editloaisanpham')->with('id_loaisp',$id_loaisp);
+        
         return view('admin')->with('admin.editloaisanpham',$quanlydslsp);
     }
     public function update_loaisp(Request $request,$id_loaisp){
@@ -63,9 +60,9 @@ class LoaisanphamController extends Controller
         $data = array();
         $data['tenloai'] = $request->tenloai;
         // $data['loaisanpham_status'] =$request->loaisanpham_status;
-
+        
         DB::table('loaisanpham')->where('id',$id_loaisp)->update($data);
         Session::put('message','Cập nhật danh mục thành công');
-        return Redirect::to('danh-sach-loai-san-pham');
+        return Redirect::to('/danh-sach-loai-san-pham');
     }
 }
