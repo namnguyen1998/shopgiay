@@ -111,9 +111,16 @@
                 <img src="{{URL::to('public/frontend/images/'.$v->hinhsp)}}" alt="" height="50" width="50">
                 <div class="col-12 col-md-9">
                     <input type="file" id="file-input" name="hinh" class="form-control-file">
-                    
+     
                 </div>
-                
+                <?php
+            $mess = Session::get('success');
+            if($mess){
+                echo $mess;
+                Session::put('success',null);
+            }
+
+        ?>
             </div>
     </div>
     <div class="card-footer"style="text-align: center">

@@ -32,6 +32,8 @@ class ProductController extends Controller
  
     public function save_product(Request $request){
         $this->AuthLogin();
+        $arr=array("jpg","jpeg","png","gif");
+        
     	$data = array();
     	$data['tensanpham'] = $request->tensanpham;
         $data['mota'] = $request->mota;
@@ -40,7 +42,8 @@ class ProductController extends Controller
         $data['id_loaisp'] = $request->loaisanpham;
         $data['id_hanggiay'] = $request->hanggiay;
         $data['id_gioitinh'] = $request->gioitinh;
-    	$get_image = $request->file('hinh');
+        $get_image = $request->file('hinh');
+        
       
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
@@ -48,14 +51,35 @@ class ProductController extends Controller
             $new_image =  $name_image.'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/frontend/images/',$new_image);
             $data['hinhsp'] = $new_image;
-            DB::table('sanpham')->insert($data);
-            Session::put('message','Thêm sp thành công');
-            return Redirect::to('/danh-sach-san-pham');
+            $ktd=$get_image->getClientOriginalExtension();
+         
+            
+            $ktd=$get_image->getClientOriginalExtension();
+            foreach($arr as $k=>$v)
+            {
+               if($ktd==$v)
+               {
+                $v=$ktd;
+                DB::table('sanpham')->insert($data);
+                Session::put('success',"<script type='text/javascript'>alert('Thêm Thành Công');</script>");
+                return Redirect::to('/danh-sach-san-pham');
+               }
+            }
+            if($ktd!=$v)
+            {
+               
+                // echo "<script type='text/javascript'>alert('Không đúng định dạng');</script>";
+                Session::put('success',"<script type='text/javascript'>alert('hình Không đúng định dạng');</script>");
+                return Redirect::to('/add-product');
+            }
+            
+           
+           
         }
 
         $data['hinhsp'] = '';
     	DB::table('sanpham')->insert($data);
-    	Session::put('message','Thêm sp thành công');
+    	Session::put('success',"<script type='text/javascript'>alert('Thêm Thành Công');</script>");
     	return Redirect::to('/danh-sach-san-pham');
     }
     // public function dshsx(){
@@ -73,6 +97,7 @@ class ProductController extends Controller
 
     public function edit_product($sanpham_id){
         $this->AuthLogin();
+       
         $dsloaisp = DB::table('loaisanpham')->orderby('id','desc')->get();
         $dshang = DB::table('hanggiay')->get();
         $gioitinh = DB::table('gioitinh')->get();
@@ -85,7 +110,8 @@ class ProductController extends Controller
     }
     public function update_product(Request $request,$sanpham_id){
         
-    	$data = array();
+        $data = array();
+        $arr=array("jpg","jpeg","png","gif");
     	$data['tensanpham'] = $request->tensanpham;
         $data['mota'] = $request->mota;
         $data['giatien'] = $request->giatien;
@@ -101,14 +127,33 @@ class ProductController extends Controller
             $new_image =  $name_image.'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/frontend/images/',$new_image);
             $data['hinhsp'] = $new_image;
-            DB::table('sanpham')->where('sanpham_id',$sanpham_id)->update($data);
-            Session::put('message','sửa sp thành công');
-            return Redirect::to('/danh-sach-san-pham');
+           
+            $ktd=$get_image->getClientOriginalExtension();
+            foreach($arr as $k=>$v)
+            {
+               if($ktd==$v)
+               {
+                $v=$ktd;
+                DB::table('sanpham')->where('sanpham_id',$sanpham_id)->update($data);
+                Session::put('success',"<script type='text/javascript'>alert('Cập nhật thành công');</script>");
+                return Redirect::to('/danh-sach-san-pham');
+               }
+            }
+            if($ktd!=$v)
+            {
+               
+                // echo "<script type='text/javascript'>alert('Không đúng định dạng');</script>";
+                Session::put('success',"<script type='text/javascript'>alert('Hình Không đúng định dạng');</script>");
+                return Redirect::to('/edit-product/'.$sanpham_id);
+            }
         }
-
         DB::table('sanpham')->where('sanpham_id',$sanpham_id)->update($data);
-    	Session::put('message','sửa sp sản xuất thành công');
-    	return Redirect::to('/danh-sach-san-pham');
+                Session::put('success',"<script type='text/javascript'>alert('Cập nhật thành công');</script>");
+                return Redirect::to('/danh-sach-san-pham');
+        
+
+        
+    	// return Redirect::to('/danh-sach-san-pham');
     }
     
 }

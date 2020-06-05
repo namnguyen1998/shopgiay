@@ -32,6 +32,14 @@
             <button class="au-btn-filter">
                 <i class="zmdi zmdi-filter-list"></i>filters</button>
         </div>
+        <?php
+            $mess = Session::get('success');
+            if($mess){
+                echo $mess;
+                Session::put('success',null);
+            }
+
+        ?>
 
         <div class="table-data__tool-right">
 
@@ -44,7 +52,7 @@
                         if ($value->roles == 0 || $value->roles == 1 ) {
         ?>
                            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                            <a href="{{URL::to('/them-san-pham')}}">
+                            <a href="{{URL::to('/add-product')}}">
                             <i class="zmdi zmdi-plus"></i>add item</button>
                         </a>
         <?php

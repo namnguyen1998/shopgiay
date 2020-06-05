@@ -55,7 +55,7 @@ class SanphamController extends Controller
       $gioitinh = DB::table('gioitinh')->get();
       return view('admin.themsanpham')->with('dshang',$dshang)->with('dsloaisp',$dsloaisp)
       ->with('dsuser',$dsuser)->with('gioitinh',$gioitinh);
-    }
+    }   
  
     public function timkiemsanpham(Request $req){
       $keyword=$req->keyword_submit;

@@ -31,7 +31,14 @@
                 </div>
                 <div class="col-12 col-md-9">
                     <textarea name="mota" id="textarea-input" rows="9" placeholder="Nhập mô tả sản phẩm" class="form-control"></textarea> 
-                   
+                    <?php
+                    $mess = Session::get('success');
+                    if($mess){
+                        echo $mess;
+                        Session::put('success',null);
+                    }
+        
+                ?>
                     
                 </div>
             </div>
