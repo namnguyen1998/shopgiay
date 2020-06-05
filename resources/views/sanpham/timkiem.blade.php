@@ -278,7 +278,7 @@
 				</div>
 				@endforeach
 			</div>
-
+		{{ $sanphamtimkiem->appends(request()->input())->links()}}
 			<!-- Load more -->
 		</div>
 		@endsection

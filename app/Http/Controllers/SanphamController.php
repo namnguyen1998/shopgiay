@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Session;
@@ -56,14 +56,13 @@ class SanphamController extends Controller
       return view('admin.themsanpham')->with('dshang',$dshang)->with('dsloaisp',$dsloaisp)
       ->with('dsuser',$dsuser)->with('gioitinh',$gioitinh);
     }
-
+ 
     public function timkiemsanpham(Request $req){
       $keyword=$req->keyword_submit;
-    
-      $loai=  DB::table('loaisanpham')->get();
-      $hang=DB::table('hanggiay')->get();
-      $sanpham_timkiem=DB::table('sanpham')->where('tensanpham','like','%'.$keyword.'%')->get();
-      return view('sanpham.timkiem')->with('loaisp',$loai)->with('hg',$hang)->with('sanphamtimkiem',$sanpham_timkiem);
+      // $loai=  DB::table('loaisanpham')->get();
+      // $hang=DB::table('hanggiay')->get();
+      $sanphamtimkiem=DB::table('sanpham')->where('tensanpham','like','%'.$keyword.'%')->paginate(8);
+      return view('sanpham.timkiem',compact('sanphamtimkiem'));
     }
 
 

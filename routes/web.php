@@ -21,11 +21,7 @@ Route::get('chitietsanpham/{id}','SanphamController@chitietsanpham');
 Route::get('/quickview/{id}','SanphamController@chitietsanpham1');
 Route::get('/thanhvientrongnhom','HomeController@thanhvientrongnhom');
 Route::get('/trangsanphamgioitinh/{id}','HomeController@sanphamgioitinh');
-
-
-
-
-Route::post('/timkiem','SanphamController@timkiemsanpham');
+Route::any('/timkiem','SanphamController@timkiemsanpham');
 Route::get('/ajax','SanphamController@ajaxtimkiem');
 
 Route::get('/send-mail',function(){
@@ -138,6 +134,6 @@ Route::post('/update-product/{sanpham_id}','ProductController@update_product');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // check pages 404
-Route::any('/{page?}',function(){
-	return View::make('pages.404');
-})->where('page','.*');
+// Route::any('/{page?}',function(){
+// 	return View::make('pages.404');
+// })->where('page','.*');
